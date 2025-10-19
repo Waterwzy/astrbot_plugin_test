@@ -7,6 +7,19 @@ class MyPlugin(Star):
     def __init__(self, context: Context):
         super().__init__(context)
 
+    def create_waterlist() :
+        waterlist = []
+        with open('waterlist_id.txt','r',encoding='utf-8') as f:
+            line_msg = f.readline()
+            while line_msg:
+                waterlist.append({"id":int(line_msg),"count":0})
+        with open("waterlist_count.txt",'r',encoding='utf-8') as f :
+            line_msg = f.readline()
+            index = 0
+            while line_msg :
+                waterlist[index]['count'] = int(line_msg)
+        return waterlist
+
     async def initialize(self):
         """可选择实现异步的插件初始化方法，当实例化该插件类之后会自动调用该方法。"""
     
@@ -23,7 +36,17 @@ class MyPlugin(Star):
     @filter.event_message_type(filter.EventMessageType.PRIVATE_MESSAGE)
     async def on_private_message(self, event: AstrMessageEvent):
         message_str = event.message_str # 获取消息的纯文本内容
-        yield event.plain_result(f"收到了一条私聊消息。{message_str}")
+        yield event.plain_result(f"你说的对，但是你为什么要给我私聊发消息，我这个功能还不知道写什么阿巴阿巴（这样吧我告诉你一个命令，你刚才发给我的消息是{message_str}）")
+
+    @filter.event_message_type(filter.EventMessageType.GROUP_MESSAGE)
+    async def water_in_group(self, event: AstrMessageEvent):
+        message_str = event.message_str # 获取消息的纯文本内容
+        if not message_str == '打水' or event.get_group_id != "1012575925" :
+            return
+        else :
+            waterlist = self.create_waterlist()
+
+            yield event.plain_result("打水成功！")
 
     async def terminate(self):
         """可选择实现异步的插件销毁方法，当插件被卸载/停用时会调用。"""
