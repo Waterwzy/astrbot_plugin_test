@@ -40,8 +40,9 @@ class MyPlugin(Star):
 
     @filter.event_message_type(filter.EventMessageType.GROUP_MESSAGE)
     async def water_in_group(self, event: AstrMessageEvent):
+        """这里应该是一个打水的指令"""
         message_str = event.message_str # 获取消息的纯文本内容
-        if not message_str == '打水' or event.get_group_id != "1012575925" :
+        if not message_str == '打水' or event.get_group_id != "小流萤的亲友群" :
             return
         else :
             waterlist = self.create_waterlist()
