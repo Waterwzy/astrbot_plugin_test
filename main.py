@@ -7,17 +7,19 @@ class MyPlugin(Star):
     def __init__(self, context: Context):
         super().__init__(context)
 
-    def create_waterlist() :
+    def create_waterlist(self) :
         waterlist = []
         with open('waterlist_id.txt','r',encoding='utf-8') as f:
             line_msg = f.readline()
             while line_msg:
                 waterlist.append({"id":int(line_msg),"count":0})
+                line_msg = f.readline()
         with open("waterlist_count.txt",'r',encoding='utf-8') as f :
             line_msg = f.readline()
             index = 0
             while line_msg :
                 waterlist[index]['count'] = int(line_msg)
+                line_msg = f.readline()
         return waterlist
 
     async def initialize(self):
@@ -42,7 +44,7 @@ class MyPlugin(Star):
     async def water_in_group(self, event: AstrMessageEvent):
         """这里应该是一个打水的指令"""
         message_str = event.message_str # 获取消息的纯文本内容
-        if not message_str == '打水' or event.get_group_id() != "小流萤的亲友群" :
+        if not message_str == '打水' or event.get_group_id() != "1046017406" :
             logger.info(f"并没有触发打水的命令，爱来自群组{event.get_group_id()}")
             return
         else :
