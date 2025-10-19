@@ -43,6 +43,7 @@ class MyPlugin(Star):
         """这里应该是一个打水的指令"""
         message_str = event.message_str # 获取消息的纯文本内容
         if not message_str == '打水' or event.get_group_id != "小流萤的亲友群" :
+            logger.info(f"并没有触发打水的命令，爱来自群组{event.get_group_id}")
             return
         else :
             waterlist = self.create_waterlist()
