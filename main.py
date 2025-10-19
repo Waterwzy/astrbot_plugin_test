@@ -112,7 +112,7 @@ class MyPlugin(Star):
                         break
 
                 if flag == 0:
-                    waterlist.append({"id":event.get_sender_id,"count":1})
+                    waterlist.append({"id":event.get_sender_id(),"count":1})
                     sender_count = 1
                 
                 logger.info(f"打水成功，群组: {group_id}")
