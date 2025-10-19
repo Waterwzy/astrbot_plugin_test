@@ -45,6 +45,25 @@ class MyPlugin(Star):
             return []
             
         return waterlist
+    
+    def write_water(self,waterlist) :
+        
+            # 使用绝对路径
+        id_file_path = os.path.join(self.plugin_dir, 'waterlist_id.txt')
+        count_file_path = os.path.join(self.plugin_dir, 'waterlist_count.txt')
+            
+        logger.info(f"尝试读取文件: {id_file_path}")
+            
+        with open(id_file_path, 'w', encoding='utf-8') as f:
+            for id in waterlist :
+                f.write(f"{id['id']}\n")
+            
+        with open(count_file_path, 'r', encoding='utf-8') as f:
+            for id in waterlist :
+                f.write(f"{id['count']}\n")
+                    
+        logger.info(f"成功写入水井数据: {len(waterlist)} 条记录")
+
 
     async def initialize(self):
         """插件初始化时检查文件是否存在"""
@@ -83,12 +102,22 @@ class MyPlugin(Star):
                 if not waterlist:
                     yield event.plain_result("水井数据为空，无法打水")
                     return
-                
-                # 这里添加实际的打水逻辑
-                # 例如：更新计数、保存等
+                sender_count = 0
+                flag = 0
+                for user in waterlist :
+                    if user['id'] == event.get_sender_id() :
+                        user['count']+=1
+                        sender_count = user['count']
+                        flag = 1
+                        break
+
+                if flag == 0:
+                    waterlist.append({"id":event.get_sender_id,"count":1})
+                    sender_count = 1
                 
                 logger.info(f"打水成功，群组: {group_id}")
-                yield event.plain_result("打水成功！")
+                self.write_water(waterlist)
+                yield event.plain_result(f"打水成功！,你总计打水{sender_count}次。")
             except Exception as e:
                 logger.error(f"打水操作出错: {e}")
                 yield event.plain_result("打水失败，请稍后重试")
