@@ -105,19 +105,19 @@ class MyPlugin(Star):
                 sender_count = 0
                 flag = 0
                 for user in waterlist :
-                    if user['id'] == event.get_sender_id() :
+                    if user['id'] == int(event.get_sender_id()) :
                         user['count']+=1
                         sender_count = user['count']
                         flag = 1
                         break
 
                 if flag == 0:
-                    waterlist.append({"id":event.get_sender_id(),"count":1})
+                    waterlist.append({"id":int(event.get_sender_id()),"count":1})
                     sender_count = 1
                 
                 logger.info(f"打水成功，群组: {group_id}")
                 self.write_water(waterlist)
-                yield event.plain_result(f"打水成功！,你总计打水{sender_count}次。")
+                yield event.plain_result(f"打水成功！你总计打水{sender_count}次。")
             except Exception as e:
                 logger.error(f"打水操作出错: {e}")
                 yield event.plain_result("打水失败，请稍后重试")
