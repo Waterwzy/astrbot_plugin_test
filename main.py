@@ -77,7 +77,7 @@ class MyPlugin(Star):
         group_id = event.get_group_id()
         
         # 修正条件判断
-        if message_str == '打水' and group_id == "2916963017":  # 使用正确的群号
+        if message_str == '打水' and group_id == "1012575925":  # 使用正确的群号
             try:
                 waterlist = self.create_waterlist()
                 if not waterlist:
