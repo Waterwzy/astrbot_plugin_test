@@ -58,7 +58,7 @@ class MyPlugin(Star):
             for id in waterlist :
                 f.write(f"{id['id']}\n")
             
-        with open(count_file_path, 'r', encoding='utf-8') as f:
+        with open(count_file_path, 'w', encoding='utf-8') as f:
             for id in waterlist :
                 f.write(f"{id['count']}\n")
                     

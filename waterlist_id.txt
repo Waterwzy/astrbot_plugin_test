@@ -1,1 +1,2 @@
 2916963017
+<bound method AstrMessageEvent.get_sender_id of <astrbot.core.platform.sources.aiocqhttp.aiocqhttp_message_event.AiocqhttpMessageEvent object at 0x000001F682A5DF10>>
