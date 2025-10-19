@@ -1,3 +1,4 @@
+import os
 from astrbot.api.event import filter, AstrMessageEvent, MessageEventResult
 from astrbot.api.star import Context, Star, register
 from astrbot.api import logger
@@ -6,51 +7,93 @@ from astrbot.api import logger
 class MyPlugin(Star):
     def __init__(self, context: Context):
         super().__init__(context)
+        # 获取插件目录的路径
+        self.plugin_dir = os.path.dirname(os.path.abspath(__file__))
 
-    def create_waterlist(self) :
+    def create_waterlist(self):
         waterlist = []
-        with open('waterlist_id.txt','r',encoding='utf-8') as f:
-            line_msg = f.readline()
-            while line_msg:
-                waterlist.append({"id":int(line_msg),"count":0})
+        try:
+            # 使用绝对路径
+            id_file_path = os.path.join(self.plugin_dir, 'waterlist_id.txt')
+            count_file_path = os.path.join(self.plugin_dir, 'waterlist_count.txt')
+            
+            logger.info(f"尝试读取文件: {id_file_path}")
+            
+            with open(id_file_path, 'r', encoding='utf-8') as f:
                 line_msg = f.readline()
-        with open("waterlist_count.txt",'r',encoding='utf-8') as f :
-            line_msg = f.readline()
-            index = 0
-            while line_msg :
-                waterlist[index]['count'] = int(line_msg)
+                while line_msg:
+                    if line_msg.strip():  # 跳过空行
+                        waterlist.append({"id": int(line_msg.strip()), "count": 0})
+                    line_msg = f.readline()
+            
+            with open(count_file_path, 'r', encoding='utf-8') as f:
                 line_msg = f.readline()
+                index = 0
+                while line_msg and index < len(waterlist):
+                    if line_msg.strip():  # 跳过空行
+                        waterlist[index]['count'] = int(line_msg.strip())
+                        index += 1
+                    line_msg = f.readline()
+                    
+            logger.info(f"成功加载水井数据: {len(waterlist)} 条记录")
+        except FileNotFoundError as e:
+            logger.error(f"文件未找到: {e}")
+            # 可以在这里创建默认文件或返回空列表
+            return []
+        except Exception as e:
+            logger.error(f"读取水井数据出错: {e}")
+            return []
+            
         return waterlist
 
     async def initialize(self):
-        """可选择实现异步的插件初始化方法，当实例化该插件类之后会自动调用该方法。"""
-    
-    # 注册指令的装饰器。指令名为 helloworld。注册成功后，发送 `/helloworld` 就会触发这个指令，并回复 `你好, {user_name}!`
+        """插件初始化时检查文件是否存在"""
+        id_file_path = os.path.join(self.plugin_dir, 'waterlist_id.txt')
+        count_file_path = os.path.join(self.plugin_dir, 'waterlist_count.txt')
+        
+        if not os.path.exists(id_file_path):
+            logger.warning(f"水井ID文件不存在: {id_file_path}")
+        if not os.path.exists(count_file_path):
+            logger.warning(f"水井计数文件不存在: {count_file_path}")
+
     @filter.command("helloworld")
     async def helloworld(self, event: AstrMessageEvent):
-        """这是一个 hello world 指令""" # 这是 handler 的描述，将会被解析方便用户了解插件内容。建议填写。
+        """这是一个 hello world 指令"""
         user_name = event.get_sender_name()
-        message_str = event.message_str # 用户发的纯文本消息字符串
-        message_chain = event.get_messages() # 用户所发的消息的消息链 # from astrbot.api.message_components import *
+        message_str = event.message_str
+        message_chain = event.get_messages()
         logger.info(message_chain)
-        yield event.plain_result(f"Hello, {user_name}, 你发了 {message_str}!") # 发送一条纯文本消息
+        yield event.plain_result(f"Hello, {user_name}, 你发了 {message_str}!")
 
     @filter.event_message_type(filter.EventMessageType.PRIVATE_MESSAGE)
     async def on_private_message(self, event: AstrMessageEvent):
-        message_str = event.message_str # 获取消息的纯文本内容
+        message_str = event.message_str
         yield event.plain_result(f"你说的对，但是你为什么要给我私聊发消息，我这个功能还不知道写什么阿巴阿巴（这样吧我告诉你一个命令，你刚才发给我的消息是{message_str}）")
 
     @filter.event_message_type(filter.EventMessageType.GROUP_MESSAGE)
     async def water_in_group(self, event: AstrMessageEvent):
-        """这里应该是一个打水的指令"""
-        message_str = event.message_str # 获取消息的纯文本内容
-        if not message_str == '打水' or event.get_group_id() != "1046017406" :
-            logger.info(f"并没有触发打水的命令，爱来自群组{event.get_group_id()}")
-            self.terminate()
-        else :
-            waterlist = self.create_waterlist()
-
-            yield event.plain_result("打水成功！")
+        """打水功能"""
+        message_str = event.message_str.strip()
+        group_id = event.get_group_id()
+        
+        # 修正条件判断
+        if message_str == '打水' and group_id == "2916963017":  # 使用正确的群号
+            try:
+                waterlist = self.create_waterlist()
+                if not waterlist:
+                    yield event.plain_result("水井数据为空，无法打水")
+                    return
+                
+                # 这里添加实际的打水逻辑
+                # 例如：更新计数、保存等
+                
+                logger.info(f"打水成功，群组: {group_id}")
+                yield event.plain_result("打水成功！")
+            except Exception as e:
+                logger.error(f"打水操作出错: {e}")
+                yield event.plain_result("打水失败，请稍后重试")
+        else:
+            logger.debug(f"未触发打水命令，消息: '{message_str}'，群组: {group_id}")
 
     async def terminate(self):
-        """可选择实现异步的插件销毁方法，当插件被卸载/停用时会调用。"""
+        """插件销毁方法"""
