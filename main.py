@@ -39,7 +39,7 @@ class MyPlugin(Star):
         file_path = os.path.join(self.plugin_dir, 'datalist.json')
                   
         with open(file_path, 'w', encoding='utf-8') as f:
-            json.dump(waterlist,f)
+            json.dump(waterlist,f,indent=4)
             
         logger.info(f"成功写入水井数据")
 
@@ -60,10 +60,12 @@ class MyPlugin(Star):
         logger.info(message_chain)
         yield event.plain_result(f"Hello, {user_name}, 你发了 {message_str}!")
 
+    @filter.event_message_type(filter.EventMessageType.GROUP_MESSAGE)
     async def water_in_group(self, event: AstrMessageEvent):
         """打水功能"""
         message_str = event.message_str.strip()
         group_id = event.get_group_id()
+        sender = event.get_sender_name()
         
         # 修正条件判断
         if message_str == '打水' and group_id == "1012575925":  
@@ -81,15 +83,15 @@ class MyPlugin(Star):
                 if flag == 0:
                     waterlist['waterlist'].append({"id":int(event.get_sender_id()),"count":1})
                     sender_count = 1
-                
+     
                 logger.info(f"打水成功，群组: {group_id}")
                 self.write_water(waterlist)
-                yield event.plain_result(f"打水成功！你总计打水{sender_count}次。")
+                yield event.plain_result(f"@{sender}\n打水成功！你总计打水{sender_count}次。")
             except Exception as e:
                 logger.error(f"打水操作出错: {e}")
                 yield event.plain_result("打水失败，请稍后重试")
-        else:
-            logger.debug(f"未触发打水命令，消息: '{message_str}'，群组: {group_id}")
+        elif message_str == '打水水' and group_id == "1012575925" :
+            yield event.plain_result(f"@{sender} 水！水！不！能！打！！！！")
 
     async def terminate(self):
         """插件销毁方法"""
