@@ -1,8 +1,6 @@
-# helloworld
+# 全自动打水姬
 
-AstrBot 插件模板
-
-A template plugin for AstrBot plugin feature
+这是一个我自己自用的astrbot插件，有我自己的特异化功能，目前包括打水和大水水，其他功能想到什么加什么（
 
 # 支持
 
