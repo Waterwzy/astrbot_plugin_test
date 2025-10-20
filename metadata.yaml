@@ -1,5 +1,5 @@
 name: fuck-u-commit # 这是你的插件的唯一识别名。
 desc: fuck # 插件简短描述
-version: v1.0.0 # 插件版本号。格式：v1.1.1 或者 v1.1
+version: v1.0.1 # 插件版本号。格式：v1.1.1 或者 v1.1
 author: Waterwzy # 作者
 repo: https://github.com/Waterwzy/astrbot_plugin_test # 插件的仓库地址
