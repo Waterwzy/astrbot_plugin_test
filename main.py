@@ -3,6 +3,7 @@ from astrbot.api.event import filter, AstrMessageEvent, MessageEventResult
 from astrbot.api.star import Context, Star, register
 from astrbot.api import logger
 import json
+import time
 
 @register("helloworld", "YourName", "一个简单的 Hello World 插件", "1.0.0")
 class MyPlugin(Star):
@@ -10,6 +11,10 @@ class MyPlugin(Star):
         super().__init__(context)
         # 获取插件目录的路径
         self.plugin_dir = os.path.dirname(os.path.abspath(__file__))
+        waterlist = self.create_waterlist()
+        if waterlist['date_mon'] != time.localtime(time.time()).tm_mon or waterlist['date_day'] != time.localtime(time.time()).tm_mday :
+            waterlist['today_water_list'] = []
+        self.write_water(waterlist)
 
     def create_waterlist(self):
 
@@ -72,6 +77,20 @@ class MyPlugin(Star):
             try:
                 waterlist = self.create_waterlist()
                 sender_count = 0
+                today_count = 0
+                flag = 0
+                for user in waterlist['today_water_list'] :
+                    if user['id'] == int(event.get_sender_id()) :
+                        if user['count'] >= 3 :
+                            yield event.plain_result(f"@{sender} 你今天已经打水过3次了，不要再打水了！")
+                            return
+                        user['count']+=1
+                        today_count = user['count']
+                        flag =1 
+                        break
+                if flag == 0 :
+                    waterlist['today_water_list'].append({"id":int(event.get_sender_id()),"count":1})
+                    today_count = 1
                 flag = 0
                 for user in waterlist['waterlist'] :
                     if user['id'] == int(event.get_sender_id()) :
@@ -86,7 +105,7 @@ class MyPlugin(Star):
      
                 logger.info(f"打水成功，群组: {group_id}")
                 self.write_water(waterlist)
-                yield event.plain_result(f"@{sender}\n打水成功！你总计打水{sender_count}次。")
+                yield event.plain_result(f"@{sender}\n打水成功！你今日打水{today_count}次。\n你总计打水{sender_count}次。")
             except Exception as e:
                 logger.error(f"打水操作出错: {e}")
                 yield event.plain_result("打水失败，请稍后重试")
