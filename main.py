@@ -4,6 +4,8 @@ from astrbot.api.star import Context, Star, register
 from astrbot.api import logger
 import json
 import time
+import random
+import math
 
 @register("helloworld", "YourName", "一个简单的 Hello World 插件", "1.0.0")
 class MyPlugin(Star):
@@ -11,9 +13,18 @@ class MyPlugin(Star):
         super().__init__(context)
         # 获取插件目录的路径
         self.plugin_dir = os.path.dirname(os.path.abspath(__file__))
+        
+
+    def check_date_update(self) :
         waterlist = self.create_waterlist()
         if waterlist['date_mon'] != time.localtime(time.time()).tm_mon or waterlist['date_day'] != time.localtime(time.time()).tm_mday :
             waterlist['today_water_list'] = []
+            waterlist['date_mon'] = time.localtime(time.time()).tm_mon
+            waterlist['date_day'] = time.localtime(time.time()).tm_mday
+            waterlist['water_boss']['now_hp'] = waterlist['water_boss']['today_hp'] + waterlist['water_boss']['hp_add_of_yesterday']
+            waterlist['water_boss']['today_hp'] = waterlist['water_boss']['now_hp']
+            waterlist['water_boss']['kill_list'] = []
+            waterlist['water_boss']['hp_add_of_yesterday'] = -5
         self.write_water(waterlist)
 
     def create_waterlist(self):
@@ -68,14 +79,16 @@ class MyPlugin(Star):
     @filter.event_message_type(filter.EventMessageType.GROUP_MESSAGE)
     async def water_in_group(self, event: AstrMessageEvent):
         """打水功能"""
+        self.check_date_update()
         message_str = event.message_str.strip()
         group_id = event.get_group_id()
         sender = event.get_sender_name()
-        
+        waterlist = self.create_waterlist()
+
         # 修正条件判断
         if message_str == '打水' and group_id == "1012575925":  
             try:
-                waterlist = self.create_waterlist()
+                
                 sender_count = 0
                 today_count = 0
                 flag = 0
@@ -110,7 +123,27 @@ class MyPlugin(Star):
                 logger.error(f"打水操作出错: {e}")
                 yield event.plain_result("打水失败，请稍后重试")
         elif message_str == '打水水' and group_id == "1012575925" :
-            yield event.plain_result(f"@{sender} 水！水！不！能！打！！！！")
-
+            if waterlist['water_boss']['now_hp'] != 0:
+                for user in waterlist['water_boss']['kill_list'] :
+                    if user['id'] == int(event.get_sender_id()) :
+                        yield event.plain_result("你今天已经打过水水了，不要再打了喵！")
+                        return
+                kill_hp = math.ceil(random.random()*10)
+                kill_more = round(random.uniform(1.1 , 10.0 ) , 1) if random.randint(0,1) else 1
+                fin_kill_hp = round(min(waterlist['water_boss']['now_hp'] , kill_hp*kill_more) , 1)
+                waterlist['water_boss']['now_hp'] -= fin_kill_hp
+                if waterlist['water_boss']['now_hp'] == 0:
+                    if time.localtime(time.time()).tm_hour <= 20 :
+                        waterlist['water_boss']['hp_add_of_yesterday'] = 10
+                    else :
+                        waterlist['water_boss']['hp_add_of_yesterday'] = 0
+                add_str = '' if kill_more == 1 else '（暴击）'
+                add_str_after = '' if waterlist['water_boss']['now_hp'] != 0 else '(今天的水水被打死了！)'
+                waterlist['water_boss']['kill_list'].append({"id":int(event.get_sender_id()),"hp":fin_kill_hp})
+                yield event.plain_result(f"打水水成功，你今天给水水造成的伤害值是{fin_kill_hp}{add_str}（{waterlist['water_boss']['now_hp']}/{waterlist['water_boss']['today_hp']}）。{add_str_after}")
+                self.write_water(waterlist)
+            else :
+                yield event.plain_result("今天的水水已经被打死了！明天再来吧。")
+            
     async def terminate(self):
         """插件销毁方法"""
