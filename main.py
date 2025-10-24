@@ -25,6 +25,7 @@ class MyPlugin(Star):
             waterlist['water_boss']['today_hp'] = waterlist['water_boss']['now_hp']
             waterlist['water_boss']['kill_list'] = []
             waterlist['water_boss']['hp_add_of_yesterday'] = -5
+        random.seed(time.time())
         self.write_water(waterlist)
 
     def create_waterlist(self):
@@ -133,10 +134,7 @@ class MyPlugin(Star):
                 fin_kill_hp = round(min(waterlist['water_boss']['now_hp'] , kill_hp*kill_more) , 1)
                 waterlist['water_boss']['now_hp'] -= fin_kill_hp
                 if waterlist['water_boss']['now_hp'] == 0:
-                    if time.localtime(time.time()).tm_hour <= 20 :
                         waterlist['water_boss']['hp_add_of_yesterday'] = 10
-                    else :
-                        waterlist['water_boss']['hp_add_of_yesterday'] = 0
                 add_str = '' if kill_more == 1 else '（暴击）'
                 add_str_after = '' if waterlist['water_boss']['now_hp'] != 0 else '(今天的水水被打死了！)'
                 waterlist['water_boss']['kill_list'].append({"id":int(event.get_sender_id()),"hp":fin_kill_hp})
