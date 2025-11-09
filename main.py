@@ -214,7 +214,7 @@ class MyPlugin(Star):
                 return
             if message_str == "灌水" :
                 yield event.plain_result(f"你现在的灌水可用值：{user_info['hp']}（输入“灌水 具体数值”以增加水水血量，打水伤害与灌水可用值换算比为10:1）")
-            elif not self.is_float(message_str[ 3 : ]) :
+            elif (not self.is_float(message_str[ 3 : ]) ) or round(float( message_str[3 : ]) , 1) <= 0 :
                 yield event.plain_result(f"参数错误！（请输入正浮点数）")
             else :
                 add_hp = round(float( message_str[3 : ]) , 1)
