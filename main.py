@@ -213,7 +213,7 @@ class MyPlugin(Star):
                 yield event.plain_result(f"你还不能灌水，需要先去打水水！")
                 return
             if message_str == "灌水" :
-                    yield event.plain_result(f"你现在的灌水可用值：{user_info['hp']}（输入“灌水 具体数值”以增加水水血量，打水伤害与灌水可用值换算比为10:1）")
+                yield event.plain_result(f"你现在的灌水可用值：{user_info['hp']}（输入“灌水 具体数值”以增加水水血量，打水伤害与灌水可用值换算比为10:1）")
             elif not self.is_float(message_str[ 3 : ]) :
                 yield event.plain_result(f"参数错误！（请输入正浮点数）")
             else :
@@ -227,6 +227,17 @@ class MyPlugin(Star):
                 waterlist['water_boss']['now_hp'] = round(waterlist['water_boss']['now_hp']+add_hp , 1 )
                 user_info['hp'] = round(user_info['hp'] - add_hp -extra_reborn, 1 )
                 yield event.plain_result(f"灌水成功。你给水水增加的血量是{add_hp},水水目前血量{waterlist['water_boss']['now_hp']}")
+        elif message_str.startswith("set_random") and sender_id == waterlist['master_id'] :
+            try :
+                randoms = int(message_str[11 :])
+            except Exception :
+                yield event.plain_result("参数错误！")
+                return
+            if randoms <= 0 :
+                yield event.plain_result("参数错误！")
+                return
+            waterlist['today_wife']['call_wife_random'] = randoms
+            yield event.plain_result(f"更新老婆概率参数成功，当前触发概率：1/{randoms}")
                 
         self.write_water(waterlist)
             

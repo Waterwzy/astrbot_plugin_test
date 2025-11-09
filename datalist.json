@@ -1,6 +1,7 @@
 {
     "date_mon": 11,
     "date_day": 9,
+    "master_id": 2916963017,
     "message_session": "mybot:GroupMessage:1012575925",
     "waterlist": [
         {
@@ -208,8 +209,8 @@
     ],
     "water_boss": {
         "today_hp": 345,
-        "hp_add_of_yesterday": -5,
-        "now_hp": 17.3,
+        "hp_add_of_yesterday": 10,
+        "now_hp": 0.0,
         "kill_list": [
             {
                 "id": 502871236,
@@ -274,6 +275,14 @@
             {
                 "id": 1844833323,
                 "hp": 9
+            },
+            {
+                "id": 287524969,
+                "hp": 8
+            },
+            {
+                "id": 2447192783,
+                "hp": 9.3
             }
         ],
         "total_list": [
@@ -383,7 +392,7 @@
             },
             {
                 "id": 287524969,
-                "hp": 10.4
+                "hp": 11.2
             },
             {
                 "id": 272293517,
@@ -440,6 +449,10 @@
             {
                 "id": 1844833323,
                 "hp": 0.9
+            },
+            {
+                "id": 2447192783,
+                "hp": 3.7
             }
         ]
     },
