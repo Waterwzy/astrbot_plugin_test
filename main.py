@@ -16,7 +16,13 @@ class MyPlugin(Star):
         super().__init__(context)
         # 获取插件目录的路径
         self.plugin_dir = os.path.dirname(os.path.abspath(__file__))
-        
+
+    def is_float(self,target) ->bool :
+        try :
+            float(target)
+            return True
+        except ValueError :
+            return False
 
     async def check_date_update(self) :
         waterlist = self.create_waterlist()
@@ -154,6 +160,16 @@ class MyPlugin(Star):
                 kill_hp = math.ceil(random.random()*10)
                 kill_more = round(random.uniform(1.1 , 10.0 ) , 1) if random.randint(0,1) else 1
                 fin_kill_hp = round( kill_hp*kill_more , 1 )
+
+                flag = 0
+                for user_info in waterlist['water_boss']['total_list'] :
+                    if user_info['id'] == sender_id :
+                        user_info['hp'] = round(fin_kill_hp/10+user_info['hp'] , 1)
+                        flag = 1
+                        break
+                if flag == 0:
+                    waterlist['water_boss']['total_list'].append({"id":sender_id,"hp":round(fin_kill_hp/10 , 1)})
+
                 if kill_hp*kill_more > waterlist['water_boss']['now_hp'] :
                     add_out_str = f'\n(伤害溢出，原始伤害{fin_kill_hp})'
                     fin_kill_hp = waterlist['water_boss']['now_hp']
@@ -186,6 +202,32 @@ class MyPlugin(Star):
         elif waterlist['today_wife']['wife_id'] and sender_id == waterlist['today_wife']['wife_id'] :
             if random.randint(1,waterlist['today_wife']['call_wife_random']) == 1 :
                 yield event.plain_result(f"{waterlist['today_wife']['call_name']}~")
+        elif message_str.startswith("灌水") and group_id == "1012575925" :
+            flag = 0
+            for add_user in waterlist['water_boss']['total_list'] :
+                if sender_id == add_user['id'] :
+                    flag = 1
+                    user_info = add_user
+                    break
+            if flag == 0 :
+                yield event.plain_result(f"你还不能灌水，需要先去打水水！")
+                return
+            if message_str == "灌水" :
+                    yield event.plain_result(f"你现在的灌水可用值：{user_info['hp']}（输入“灌水 具体数值”以增加水水血量，打水伤害与灌水可用值换算比为10:1）")
+            elif not self.is_float(message_str[ 3 : ]) :
+                yield event.plain_result(f"参数错误！（请输入正浮点数）")
+            else :
+                add_hp = round(float( message_str[3 : ]) , 1)
+                if user_info['hp'] < add_hp or (waterlist['water_boss']['now_hp'] == 0 and user_info['hp'] -1 < add_hp):
+                    yield event.plain_result(f"你现在无法增加这么多的血量，你现在的血量可用值为{user_info['hp']}（复活水水需要额外一点血量）")
+                    return
+                extra_reborn = 0
+                if waterlist['water_boss']['now_hp'] == 0:
+                    extra_reborn = 1
+                waterlist['water_boss']['now_hp'] = round(waterlist['water_boss']['now_hp']+add_hp , 1 )
+                user_info['hp'] = round(user_info['hp'] - add_hp -extra_reborn, 1 )
+                yield event.plain_result(f"灌水成功。你给水水增加的血量是{add_hp},水水目前血量{waterlist['water_boss']['now_hp']}")
+                
         self.write_water(waterlist)
             
     async def terminate(self):
