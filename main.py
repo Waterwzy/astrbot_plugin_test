@@ -17,6 +17,13 @@ class MyPlugin(Star):
         # 获取插件目录的路径
         self.plugin_dir = os.path.dirname(os.path.abspath(__file__))
 
+    def is_special_call(self,user_id:int,waterlist:list)  :
+        for special_user in waterlist['special_call_list'] :
+            if user_id == special_user['call_id'] :
+                return special_user
+        return None
+
+
     def is_float(self,target) ->bool :
         try :
             float(target)
@@ -34,15 +41,7 @@ class MyPlugin(Star):
             waterlist['water_boss']['today_hp'] = waterlist['water_boss']['now_hp']
             waterlist['water_boss']['kill_list'] = []
             waterlist['water_boss']['hp_add_of_yesterday'] = -5
-            waterlist['today_wife']['wife_id'] = 0
         random.seed(time.time())
-        if not waterlist['today_wife']['wife_id'] and time.time() - waterlist['today_wife']['last_ask_time'] >= 90:
-            chain = [
-                Comp.Plain("今日老婆")
-            ]
-            if waterlist['message_session'] :
-                waterlist['today_wife']['last_ask_time'] = time.time()
-                await self.context.send_message(waterlist['message_session'],MessageChain(chain))
         self.write_water(waterlist)
 
     def create_waterlist(self):
@@ -105,17 +104,13 @@ class MyPlugin(Star):
         waterlist = self.create_waterlist()
         sender_id = int(event.get_sender_id()) #int
 
+        if group_id != "1012575925" :
+            return
+
         waterlist['message_session'] = event.unified_msg_origin
 
-        qq_match = re.search(r'【[^】]+】\((\d+)\)', message_str.strip())
-        if qq_match:
-            logger.info("匹配到 QQ 号码，可以设置")
-            target_qq = int(qq_match.group(1))
-
-        
-
         # 修正条件判断
-        if message_str == '打水' and group_id == "1012575925":  
+        if message_str == '打水' :  
             try:
                 
                 sender_count = 0
@@ -123,9 +118,11 @@ class MyPlugin(Star):
                 flag = 0
                 for user in waterlist['today_water_list'] :
                     if user['id'] == int(event.get_sender_id()) :
+                        #'''
                         if user['count'] >= 3 :
                             yield event.plain_result(f"@{sender} 你今天已经打水过3次了，不要再打水了！")
                             return
+                        #'''
                         user['count']+=1
                         today_count = user['count']
                         flag =1 
@@ -147,18 +144,22 @@ class MyPlugin(Star):
      
                 logger.info(f"打水成功，群组: {group_id}")
                 #self.write_water(waterlist)
-                yield event.plain_result(f"@{sender}\n打水成功！你今日打水{today_count}次。\n你总计打水{sender_count}次。")
+                chian = [
+                    Comp.At(qq=event.get_sender_id()),
+                    Comp.Plain(f"\u200b\n打水成功！你今日打水{today_count}次。\n你总计打水{sender_count}次。")
+                ]
+                yield event.chain_result(chian)
             except Exception as e:
                 logger.error(f"打水操作出错: {e}")
                 yield event.plain_result("打水失败，请稍后重试")
-        elif message_str == '打水水' and group_id == "1012575925" :
+        elif message_str == '打水水' :
             if waterlist['water_boss']['now_hp'] != 0:
                 for user in waterlist['water_boss']['kill_list'] :
                     if user['id'] == int(event.get_sender_id()) :
                         yield event.plain_result("你今天已经打过水水了，不要再打了喵！")
                         return
                 kill_hp = math.ceil(random.random()*10)
-                kill_more = round(random.uniform(1.1 , 10.0 ) , 1) if random.randint(0,1) else 1
+                kill_more = round(random.uniform(1.1 , 10.0 ) , 1) if random.randint(0,3) else 1
                 fin_kill_hp = round( kill_hp*kill_more , 1 )
 
                 flag = 0
@@ -189,20 +190,7 @@ class MyPlugin(Star):
                 #self.write_water(waterlist)
             else :
                 yield event.plain_result("今天的水水已经被打死了！明天再来吧。")
-        elif sender_id == waterlist['today_wife']['bot_id'] and event.is_at_or_wake_command and qq_match:
-            waterlist['today_wife']['wife_id'] = target_qq
-            waterlist['today_wife']['call_name'] = "老婆"
-            logger.info("载入老婆信息成功")
-            #self.write_water(waterlist)
-        elif sender_id == waterlist['today_wife']['bot_id'] and event.is_at_or_wake_command and qq_match:
-            waterlist['today_wife']['wife_id'] = target_qq
-            waterlist['today_wife']['call_name'] = "老公"
-            logger.info("载入老公信息成功")
-            #self.write_water(waterlist)
-        elif waterlist['today_wife']['wife_id'] and sender_id == waterlist['today_wife']['wife_id'] :
-            if random.randint(1,waterlist['today_wife']['call_wife_random']) == 1 :
-                yield event.plain_result(f"{waterlist['today_wife']['call_name']}~")
-        elif message_str.startswith("灌水") and group_id == "1012575925" :
+        elif message_str.startswith("灌水") :
             flag = 0
             for add_user in waterlist['water_boss']['total_list'] :
                 if sender_id == add_user['id'] :
@@ -219,25 +207,26 @@ class MyPlugin(Star):
             else :
                 add_hp = round(float( message_str[3 : ]) , 1)
                 if user_info['hp'] < add_hp or (waterlist['water_boss']['now_hp'] == 0 and user_info['hp'] -1 < add_hp):
-                    yield event.plain_result(f"你现在无法增加这么多的血量，你现在的血量可用值为{user_info['hp']}（复活水水需要额外一点血量）")
+                    yield event.plain_result(f"你现在无法增加这么多的血量，你现在的血量可用值为{user_info['hp']}（复活水水需要额外1点血量）")
                     return
                 extra_reborn = 0
                 if waterlist['water_boss']['now_hp'] == 0:
                     extra_reborn = 1
                 waterlist['water_boss']['now_hp'] = round(waterlist['water_boss']['now_hp']+add_hp , 1 )
                 user_info['hp'] = round(user_info['hp'] - add_hp -extra_reborn, 1 )
-                yield event.plain_result(f"灌水成功。你给水水增加的血量是{add_hp},水水目前血量{waterlist['water_boss']['now_hp']}")
-        elif message_str.startswith("set_random") and sender_id == waterlist['master_id'] :
-            try :
-                randoms = int(message_str[11 :])
-            except Exception :
-                yield event.plain_result("参数错误！")
-                return
-            if randoms <= 0 :
-                yield event.plain_result("参数错误！")
-                return
-            waterlist['today_wife']['call_wife_random'] = randoms
-            yield event.plain_result(f"更新老婆概率参数成功，当前触发概率：1/{randoms}")
+                chain = [
+                    Comp.At(qq = event.get_sender_id()),
+                    Comp.Plain(f"\n灌水成功。你给水水增加的血量是{add_hp},水水目前血量{waterlist['water_boss']['now_hp']}")
+                ]
+                yield event.chain_result(chain)
+        elif self.is_special_call(sender_id,waterlist) is not None :
+            logger.info(f"确认为特殊用户")
+            target = self.is_special_call(sender_id,waterlist)
+            randoms = random.randint(1,target['call_random'])
+            if randoms == 1:
+                yield event.plain_result(f"{target['call_str']}")
+            else :
+                logger.info(f"call_random not worked,now random int:{randoms}")
                 
         self.write_water(waterlist)
             
