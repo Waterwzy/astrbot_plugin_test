@@ -19,6 +19,24 @@ class MyPlugin(Star):
         # 获取插件目录的路径
         self.plugin_dir = os.path.dirname(os.path.abspath(__file__))
 
+    def is_legal_songs(self,name:str) :
+        target_path = "data/plugins/astrbot_plugin_test/AI"
+        for item in os.listdir(target_path) :
+            root , _ = os.path.splitext(item)
+            if root == name :
+                return item
+        return None
+
+    def get_all_songs(self) :
+        target_path = "data/plugins/astrbot_plugin_test/AI"
+        target_str = ''
+        for i,item in enumerate(os.listdir(target_path)) :
+            name,_ = os.path.splitext(item)
+            target_str += str(i+1) + '.' + name + '\n'
+        target_str += "（输入 \"翻唱 具体歌名\"以点歌）"
+        return target_str
+
+
     def is_special_call(self,user_id:int,waterlist:list)  :
         for special_user in waterlist['special_call_list'] :
             if user_id == special_user['call_id'] :
@@ -56,6 +74,33 @@ class MyPlugin(Star):
         except ValueError :
             return False
 
+    def add_water(self, count : int, waterlist : list,user_id :int)  :
+        flag = 0
+        today = 0
+        total = 0
+        for user in waterlist['today_water_list'] :
+            if user['id'] == user_id :
+                flag = 1
+                if 3 - user['count'] < count :
+                    return None
+                user['count'] += count
+                today = user['count']
+                break
+        if flag == 0 :
+            waterlist['today_water_list'].append({"id":user_id,"count":count})
+            today = count
+        flag = 0
+        for user in waterlist['waterlist'] :
+            if user['id'] == user_id :
+                flag = 1
+                user['count'] += count
+                total = user['count']
+                break
+        if flag == 0:
+            waterlist['waterlist'].append({"id":user_id,"count":count})
+            total = count
+        return (today , total)
+
     async def check_date_update(self) :
         waterlist = self.create_waterlist()
         if waterlist['date_mon'] != time.localtime(time.time()).tm_mon or waterlist['date_day'] != time.localtime(time.time()).tm_mday :
@@ -74,7 +119,7 @@ class MyPlugin(Star):
                 chain = [
                     Comp.Plain(f"=====昨日打水总计=====\n昨日血量:{yesterday_water_hp}\n昨日打水最多: "),
                     Comp.At(qq = yesterday_max_id),
-                    Comp.Plain(f"({yesterday_water_hp})\n今日更新血量:{waterlist['water_boss']['today_hp']}")
+                    Comp.Plain(f"({yesterday_max_hp})\n今日更新血量:{waterlist['water_boss']['today_hp']}")
                 ]
                 
                 await self.context.send_message(waterlist['message_session'],MessageChain(chain))
@@ -149,51 +194,26 @@ class MyPlugin(Star):
         waterlist['message_session'] = event.unified_msg_origin
 
         # 修正条件判断
-        if message_str == '打水' :  
-            try:
-                
-                sender_count = 0
-                today_count = 0
-                flag = 0
-                for user in waterlist['today_water_list'] :
-                    if user['id'] == int(event.get_sender_id()) :
-                        #'''
-                        if user['count'] >= 3 :
-                            yield event.plain_result(f"@{sender} 你今天已经打水过3次了，不要再打水了！")
-                            return
-                        #'''
-                        user['count']+=1
-                        today_count = user['count']
-                        flag =1 
-                        break
-                if flag == 0 :
-                    waterlist['today_water_list'].append({"id":int(event.get_sender_id()),"count":1})
-                    today_count = 1
-                flag = 0
-                for user in waterlist['waterlist'] :
-                    if user['id'] == int(event.get_sender_id()) :
-                        user['count']+=1
-                        sender_count = user['count']
-                        flag = 1
-                        break
-
-                if flag == 0:
-                    waterlist['waterlist'].append({"id":int(event.get_sender_id()),"count":1})
-                    sender_count = 1
-     
-                logger.info(f"打水成功，群组: {group_id}")
-                #self.write_water(waterlist)
-                chian = [
-                    Comp.At(qq=event.get_sender_id()),
-                    Comp.Plain(f"\u200b\n打水成功！你今日打水{today_count}次。\n你总计打水{sender_count}次。")
+        if message_str == '打水' or message_str == '打淼':
+            count = 1 if message_str == '打水' else 3  
+            result = self.add_water(count , waterlist , sender_id)
+            if result == None :
+                chain = [
+                    Comp.At(qq = sender_id),
+                    Comp.Plain(f"\u200b 打水失败，每日打水上限是三次喵！")
                 ]
-
-                self.add_favorite(3,sender_id,waterlist)
-
-                yield event.chain_result(chian)
-            except Exception as e:
-                logger.error(f"打水操作出错: {e}")
-                yield event.plain_result("打水失败，请稍后重试")
+                yield event.chain_result(chain)
+            else :
+                today , total = result
+                chain = [
+                    Comp.At(qq = sender_id),
+                    Comp.Plain(f"\u200b 打水成功！\n你今日打水{today}次，总计打水{total}次。")
+                ]
+                if message_str == '打水' :
+                    self.add_favorite(3 , sender_id , waterlist)
+                else :
+                    self.add_favorite(9 , sender_id , waterlist)
+                yield event.chain_result(chain)
         elif message_str == '打水水' :
             if waterlist['water_boss']['now_hp'] != 0:
                 for user in waterlist['water_boss']['kill_list'] :
@@ -276,9 +296,35 @@ class MyPlugin(Star):
                         Comp.At(qq = sender_id),
                         Comp.Plain(f"\u200b 你的好感度是{user['favorite']}喵")
                     ]
+                    if user['favorite'] <= 30 :
+                        chain.append(Comp.Image.fromFileSystem("data/plugins/astrbot_plugin_test/images/low-favorite.jpg"))
                     yield event.chain_result(chain)
                     return
-            yield event.plain_result("你还没有好感度喵？")
+            chain = [
+                Comp.Image.fromFileSystem("data/plugins/astrbot_plugin_test/images/low-favorite.jpg")
+            ]
+            yield event.chain_result(chain)
+
+        elif message_str == "翻唱列表" :
+            yield event.plain_result(self.get_all_songs())
+        elif message_str.startswith("翻唱") :
+            tragets = message_str[ 2 : ].strip()
+            if self.is_legal_songs(tragets) is None:
+                yield event.plain_result(f"列表里没有这首歌，你可以通过 翻唱列表 查询可以翻唱的曲目")
+                return
+            full_name = self.is_legal_songs(tragets)
+            chain = [
+                Comp.Record(file="data/plugins/astrbot_plugin_test/AI/"+full_name)
+            ]
+            yield event.chain_result(chain)
+
+        elif message_str == "checkwater" :
+            chain = [
+                Comp.At(qq = sender_id),
+                Comp.Plain(f"\u200b  bot还活着喵！\n水水目前状态：{waterlist['water_boss']['now_hp']}/{waterlist['water_boss']['today_hp']}.预计明日血量为：{waterlist['water_boss']['today_hp']+waterlist['water_boss']['hp_add_of_yesterday']}.")
+            ]
+            yield event.chain_result(chain)
+
         elif self.is_special_call(sender_id,waterlist) is not None :
             logger.info(f"确认为特殊用户")
             target = self.is_special_call(sender_id,waterlist)
