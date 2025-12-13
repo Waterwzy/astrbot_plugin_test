@@ -47,7 +47,7 @@ class MyPlugin(Star):
         flag = 1
         for user in waterlist['favorite_list'] :
             if user['id'] == favorite_user :
-                user['favorite'] += favorite_num
+                user['favorite'] += favorite_num*waterlist['speacial_favorite_add']
                 flag = 0
                 break
         if flag :
@@ -296,9 +296,15 @@ class MyPlugin(Star):
                         Comp.At(qq = sender_id),
                         Comp.Plain(f"\u200b 你的好感度是{user['favorite']}喵")
                     ]
-                    if user['favorite'] <= 30 :
+                    if 0 < user['favorite'] <= 30 :
                         chain.append(Comp.Image.fromFileSystem("data/plugins/astrbot_plugin_test/images/low-favorite.jpg"))
+                    elif user['favorite'] <= 0:
+                        chain.append(Comp.Plain(f"\u200b 杂鱼杂鱼~"))
+                        chain.append(Comp.Image.fromFileSystem("data/plugins/astrbot_plugin_test/images/low-low-favorite.jpg"))
+                    elif user['favorite'] >= 100 :
+                        chain.append(Comp.Image.fromFileSystem("data/plugins/astrbot_plugin_test/images/high-favorite.jpg"))
                     yield event.chain_result(chain)
+
                     return
             chain = [
                 Comp.Image.fromFileSystem("data/plugins/astrbot_plugin_test/images/low-favorite.jpg")
