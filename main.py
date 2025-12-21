@@ -101,6 +101,12 @@ class MyPlugin(Star):
             total = count
         return (today , total)
 
+    def get_favorite (self , id : int , waterlist) :
+        for user in waterlist['favorite_list'] :
+            if user['id'] == id :
+                return user['favorite']
+        return 0
+
     async def check_date_update(self) :
         waterlist = self.create_waterlist()
         if waterlist['date_mon'] != time.localtime(time.time()).tm_mon or waterlist['date_day'] != time.localtime(time.time()).tm_mday :
@@ -121,11 +127,10 @@ class MyPlugin(Star):
                     Comp.At(qq = yesterday_max_id),
                     Comp.Plain(f"({yesterday_max_hp})\n今日更新血量:{waterlist['water_boss']['today_hp']}")
                 ]
-                
+                random.seed(time.time())
                 await self.context.send_message(waterlist['message_session'],MessageChain(chain))
             except Exception as e:
                 logger.error(f"catch error in checking update:{e}")
-        random.seed(time.time())
         self.write_water(waterlist)
 
     def create_waterlist(self):
@@ -221,7 +226,7 @@ class MyPlugin(Star):
                         yield event.plain_result("你今天已经打过水水了，不要再打了喵！")
                         return
                 kill_hp = math.ceil(random.random()*10)
-                kill_more = round(random.uniform(1.1 , 10.0 ) , 1) if random.randint(0,3) else 1
+                kill_more = round(random.uniform( 1.1 , 10.0 ) + max( 0 , min( self.get_favorite(sender_id , waterlist)/100 , 10 ) ) , 1) if random.randint(0,9) else 1
                 fin_kill_hp = round( kill_hp*kill_more , 1 )
 
                 flag = 0
