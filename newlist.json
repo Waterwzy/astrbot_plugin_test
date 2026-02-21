@@ -1,0 +1,1221 @@
+{
+    "date_mon": 2,
+    "date_day": 21,
+    "master_id": 2916963017,
+    "message_session": "mybot:GroupMessage:1012575925",
+    "special_favorite_add": 1,
+    "buff_num": 2,
+    "buff_text_list": [
+        {},
+        {
+            "name": "\u5e78\u8fd0\u4e00\u51fb",
+            "content": [
+                "",
+                "\u6253\u6c34\u6c34\u7206\u4f24\u589e\u52a00.5",
+                "\u6253\u6c34\u6c34\u7206\u4f24\u589e\u52a01.3",
+                "\u6253\u6c34\u6c34\u7206\u4f24\u589e\u52a02.4"
+            ]
+        },
+        {
+            "name": "\u560e\u5566\u560e\u6728\u9ad8\u624b",
+            "content": [
+                "",
+                "\u597d\u611f\u5ea61.5\u500d\u6389\u843d",
+                "\u597d\u611f\u5ea62\u500d\u6389\u843d",
+                "\u597d\u611f\u5ea63.5\u500d\u6389\u843d"
+            ]
+        }
+    ],
+    "water_boss": {
+        "today_hp": 745,
+        "hp_add_of_yesterday": -5,
+        "now_hp": 455.4
+    },
+    "user_data": {
+        "2916963017": {
+            "today_water": 3,
+            "total_water": 374,
+            "today_hp": 15.0,
+            "total_hp": 75.1,
+            "favorite": 1585,
+            "buff": [
+                2,
+                2
+            ],
+            "has_special_call": true,
+            "special_call_type": "image",
+            "special_call_random": 40,
+            "special_call_content": "data/plugins/astrbot_plugin_test/images/call/2916963017.jpg"
+        },
+        "287524969": {
+            "today_water": 0,
+            "total_water": 4,
+            "today_hp": 0,
+            "total_hp": 67.6,
+            "favorite": -29,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3113287941": {
+            "today_water": 0,
+            "total_water": 213,
+            "today_hp": 0,
+            "total_hp": 216.4,
+            "favorite": 592,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "1797728368": {
+            "today_water": 0,
+            "total_water": 16,
+            "today_hp": 0,
+            "total_hp": 8.8,
+            "favorite": 17,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "2283255516": {
+            "today_water": 0,
+            "total_water": 4,
+            "today_hp": 0,
+            "total_hp": 3.9,
+            "favorite": 7,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "2454466986": {
+            "today_water": 0,
+            "total_water": 109,
+            "today_hp": 0,
+            "total_hp": 124.2,
+            "favorite": 244,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "434894423": {
+            "today_water": 0,
+            "total_water": 241,
+            "today_hp": 0,
+            "total_hp": 261.6,
+            "favorite": 977,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": true,
+            "special_call_type": "text",
+            "special_call_random": 30,
+            "special_call_content": "\u6211\u62ef\u6551\u4e86\u6574\u4e2a\u4e16\u754c \u5374\u5fd8\u4e86\u4f60"
+        },
+        "2983368794": {
+            "today_water": 3,
+            "total_water": 232,
+            "today_hp": 47.0,
+            "total_hp": 196.79999999999998,
+            "favorite": 661,
+            "buff": [
+                1,
+                1
+            ],
+            "has_special_call": true,
+            "special_call_type": "text",
+            "special_call_random": 30,
+            "special_call_content": "\u8001\u5927\uff5e\u9a7e\u5230\uff01\uff01\uff01"
+        },
+        "2221388664": {
+            "today_water": 0,
+            "total_water": 9,
+            "today_hp": 0,
+            "total_hp": 13.7,
+            "favorite": 6,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "502871236": {
+            "today_water": 0,
+            "total_water": 23,
+            "today_hp": 0,
+            "total_hp": 295.2,
+            "favorite": 348,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": true,
+            "special_call_type": "text",
+            "special_call_random": 30,
+            "special_call_content": "\u5c0f\u5fc3\u6d63\u718a\uff08\u9003\uff09"
+        },
+        "1707880078": {
+            "today_water": 0,
+            "total_water": 19,
+            "today_hp": 0,
+            "total_hp": 12.0,
+            "favorite": 58,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3800880199": {
+            "today_water": 0,
+            "total_water": 15,
+            "today_hp": 0,
+            "total_hp": 21.5,
+            "favorite": 115,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": true,
+            "special_call_type": "text",
+            "special_call_random": 30,
+            "special_call_content": "\u81f3\u81fb\u59d0\u59d0~"
+        },
+        "3762207553": {
+            "today_water": 0,
+            "total_water": 58,
+            "today_hp": 21.6,
+            "total_hp": 80.7,
+            "favorite": 18,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "1597371743": {
+            "today_water": 0,
+            "total_water": 173,
+            "today_hp": 0,
+            "total_hp": 104.8,
+            "favorite": 350,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": true,
+            "special_call_type": "text",
+            "special_call_random": 30,
+            "special_call_content": "\u7b28\u86cb\u521d\u516d~"
+        },
+        "3263714186": {
+            "today_water": 0,
+            "total_water": 55,
+            "today_hp": 0,
+            "total_hp": 106.5,
+            "favorite": 317,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": true,
+            "special_call_type": "text",
+            "special_call_random": 30,
+            "special_call_content": "\u55b5\u55b5\u55b5"
+        },
+        "206398757": {
+            "today_water": 3,
+            "total_water": 103,
+            "today_hp": 9.6,
+            "total_hp": 61.2,
+            "favorite": 166,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "2745265597": {
+            "today_water": 0,
+            "total_water": 39,
+            "today_hp": 0,
+            "total_hp": 50.4,
+            "favorite": 31,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3686533306": {
+            "today_water": 0,
+            "total_water": 13,
+            "today_hp": 0,
+            "total_hp": 0.0,
+            "favorite": 88,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": true,
+            "special_call_type": "text",
+            "special_call_random": 30,
+            "special_call_content": "\u4eba\u673a~"
+        },
+        "706137232": {
+            "today_water": 0,
+            "total_water": 23,
+            "today_hp": 0,
+            "total_hp": 46.3,
+            "favorite": 136,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": true,
+            "special_call_type": "text",
+            "special_call_random": 30,
+            "special_call_content": "\u732b\u732b\u7cd5\u59d0\u59d0~"
+        },
+        "1342985631": {
+            "today_water": 0,
+            "total_water": 20,
+            "today_hp": 0,
+            "total_hp": 23.6,
+            "favorite": 27,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": true,
+            "special_call_type": "text",
+            "special_call_random": 50,
+            "special_call_content": "\u5982\u679c\u4f60\u5f88\u5e78\u8fd0\uff0c\u613f\u706f\u706b\u6307\u5f15\u4f60"
+        },
+        "292344703": {
+            "today_water": 0,
+            "total_water": 1,
+            "today_hp": 0,
+            "total_hp": 0,
+            "favorite": 0,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3385346898": {
+            "today_water": 0,
+            "total_water": 158,
+            "today_hp": 0,
+            "total_hp": 260.20000000000005,
+            "favorite": 276,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3603922871": {
+            "today_water": 0,
+            "total_water": 1,
+            "today_hp": 0,
+            "total_hp": 0,
+            "favorite": 0,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "1591803092": {
+            "today_water": 0,
+            "total_water": 2,
+            "today_hp": 0,
+            "total_hp": 123.1,
+            "favorite": -88,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "1797322599": {
+            "today_water": 0,
+            "total_water": 3,
+            "today_hp": 0,
+            "total_hp": 4.0,
+            "favorite": 0,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "2447192783": {
+            "today_water": 0,
+            "total_water": 4,
+            "today_hp": 0,
+            "total_hp": 24.8,
+            "favorite": 0,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3842824261": {
+            "today_water": 0,
+            "total_water": 3,
+            "today_hp": 0,
+            "total_hp": 0,
+            "favorite": 0,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3224678516": {
+            "today_water": 1,
+            "total_water": 21,
+            "today_hp": 22.0,
+            "total_hp": 25.8,
+            "favorite": 48,
+            "buff": [
+                2,
+                1
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "431966798": {
+            "today_water": 0,
+            "total_water": 7,
+            "today_hp": 0,
+            "total_hp": 0.0,
+            "favorite": 15,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3224095013": {
+            "today_water": 3,
+            "total_water": 167,
+            "today_hp": 134.1,
+            "total_hp": 125.30000000000001,
+            "favorite": 899,
+            "buff": [
+                1,
+                1
+            ],
+            "has_special_call": true,
+            "special_call_type": "image",
+            "special_call_random": 30,
+            "special_call_content": "data/plugins/astrbot_plugin_test/images/call/3224095013.gif"
+        },
+        "1467893085": {
+            "today_water": 0,
+            "total_water": 309,
+            "today_hp": 0,
+            "total_hp": 424.9,
+            "favorite": 757,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": true,
+            "special_call_type": "image",
+            "special_call_random": 50,
+            "special_call_content": "data/plugins/astrbot_plugin_test/images/call/1467893085.jpg"
+        },
+        "2175364832": {
+            "today_water": 0,
+            "total_water": 82,
+            "today_hp": 0,
+            "total_hp": 195.20000000000002,
+            "favorite": 77,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "1275191036": {
+            "today_water": 0,
+            "total_water": 2,
+            "today_hp": 0,
+            "total_hp": 3.7,
+            "favorite": 3,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "2000945": {
+            "today_water": 0,
+            "total_water": 71,
+            "today_hp": 0,
+            "total_hp": 45.1,
+            "favorite": 134,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "2096321460": {
+            "today_water": 0,
+            "total_water": 58,
+            "today_hp": 0,
+            "total_hp": 9.0,
+            "favorite": 258,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "2165329855": {
+            "today_water": 0,
+            "total_water": 109,
+            "today_hp": 0,
+            "total_hp": 79.7,
+            "favorite": 334,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": true,
+            "special_call_type": "image",
+            "special_call_random": 30,
+            "special_call_content": "data/plugins/astrbot_plugin_test/images/call/2165329855.jpg"
+        },
+        "1503293697": {
+            "today_water": 0,
+            "total_water": 6,
+            "today_hp": 0,
+            "total_hp": 0,
+            "favorite": 0,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3798019474": {
+            "today_water": 0,
+            "total_water": 44,
+            "today_hp": 0,
+            "total_hp": 0.9,
+            "favorite": 225,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "2052361": {
+            "today_water": 0,
+            "total_water": 10,
+            "today_hp": 0,
+            "total_hp": 48.0,
+            "favorite": -12,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3693439025": {
+            "today_water": 0,
+            "total_water": 74,
+            "today_hp": 0,
+            "total_hp": 63.3,
+            "favorite": 252,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "1844833323": {
+            "today_water": 0,
+            "total_water": 3,
+            "today_hp": 0,
+            "total_hp": 10.8,
+            "favorite": 4,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "631974973": {
+            "today_water": 0,
+            "total_water": 1,
+            "today_hp": 0,
+            "total_hp": 0,
+            "favorite": 0,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "2411972143": {
+            "today_water": 0,
+            "total_water": 50,
+            "today_hp": 0,
+            "total_hp": 0,
+            "favorite": 181.0,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3102861598": {
+            "today_water": 0,
+            "total_water": 2,
+            "today_hp": 0,
+            "total_hp": 155.7,
+            "favorite": -75,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": true,
+            "special_call_type": "text",
+            "special_call_random": 10000000000000000000000000000000000000000000000000000000000000000000000000000000,
+            "special_call_content": "hxy\u5927\u4eba\u4e3e\u4e16\u65e0\u53cc\uff01hxy\u5927\u4eba\u806a\u660e\u7edd\u9876\uff01hxy\u5927\u4eba\u6c89\u9c7c\u843d\u96c1\uff01"
+        },
+        "2745087084": {
+            "today_water": 0,
+            "total_water": 3,
+            "today_hp": 0,
+            "total_hp": 2.2,
+            "favorite": 0,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "1658722951": {
+            "today_water": 0,
+            "total_water": 35,
+            "today_hp": 0,
+            "total_hp": 11.3,
+            "favorite": 111,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "2572402768": {
+            "today_water": 0,
+            "total_water": 5,
+            "today_hp": 0,
+            "total_hp": 14.0,
+            "favorite": 48,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "2424928574": {
+            "today_water": 0,
+            "total_water": 26,
+            "today_hp": 0,
+            "total_hp": 23.7,
+            "favorite": 72,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": true,
+            "special_call_type": "image",
+            "special_call_random": 33550336,
+            "special_call_content": "data/plugins/astrbot_plugin_test/images/call/2424928574.jpg"
+        },
+        "3446278624": {
+            "today_water": 0,
+            "total_water": 5,
+            "today_hp": 0,
+            "total_hp": 6.2,
+            "favorite": 10,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3680269120": {
+            "today_water": 0,
+            "total_water": 4,
+            "today_hp": 35.7,
+            "total_hp": 229.9,
+            "favorite": -250,
+            "buff": [
+                2,
+                2
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "331848715": {
+            "today_water": 0,
+            "total_water": 3,
+            "today_hp": 0,
+            "total_hp": 6.0,
+            "favorite": 15,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3136485058": {
+            "today_water": 0,
+            "total_water": 1,
+            "today_hp": 0,
+            "total_hp": 0,
+            "favorite": 3,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "2530059525": {
+            "today_water": 0,
+            "total_water": 18,
+            "today_hp": 0,
+            "total_hp": 71.8,
+            "favorite": 12,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3877340112": {
+            "today_water": 0,
+            "total_water": 15,
+            "today_hp": 0,
+            "total_hp": 14.4,
+            "favorite": 34,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3368601311": {
+            "today_water": 0,
+            "total_water": 124,
+            "today_hp": 0,
+            "total_hp": 160.7,
+            "favorite": 287,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": true,
+            "special_call_type": "text",
+            "special_call_random": 33550336,
+            "special_call_content": "33550336"
+        },
+        "3985977401": {
+            "today_water": 0,
+            "total_water": 3,
+            "today_hp": 0,
+            "total_hp": 24.5,
+            "favorite": -1,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3584246539": {
+            "today_water": 0,
+            "total_water": 26,
+            "today_hp": 0,
+            "total_hp": 42.5,
+            "favorite": 63,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3763169591": {
+            "today_water": 0,
+            "total_water": 1,
+            "today_hp": 0,
+            "total_hp": 0,
+            "favorite": 3,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3892917568": {
+            "today_water": 0,
+            "total_water": 7,
+            "today_hp": 0,
+            "total_hp": 1.6,
+            "favorite": 15,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3812682893": {
+            "today_water": 0,
+            "total_water": 6,
+            "today_hp": 0,
+            "total_hp": 26.8,
+            "favorite": 8,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "1023808307": {
+            "today_water": 0,
+            "total_water": 96,
+            "today_hp": 0,
+            "total_hp": 129.8,
+            "favorite": 227,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "2743972806": {
+            "today_water": 0,
+            "total_water": 12,
+            "today_hp": 0,
+            "total_hp": 0.0,
+            "favorite": 39,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "2701699091": {
+            "today_water": 0,
+            "total_water": 6,
+            "today_hp": 0,
+            "total_hp": 4.1,
+            "favorite": 16,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3820534944": {
+            "today_water": 0,
+            "total_water": 1,
+            "today_hp": 0,
+            "total_hp": 3.9,
+            "favorite": 1,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3877792948": {
+            "today_water": 0,
+            "total_water": 2,
+            "today_hp": 0,
+            "total_hp": 28.4,
+            "favorite": -18,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "2642797027": {
+            "today_water": 0,
+            "total_water": 5,
+            "today_hp": 0,
+            "total_hp": 5.5,
+            "favorite": 4,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "1932325692": {
+            "today_water": 0,
+            "total_water": 2,
+            "today_hp": 0,
+            "total_hp": 17.5,
+            "favorite": -10,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3337411391": {
+            "today_water": 0,
+            "total_water": 3,
+            "today_hp": 4.6,
+            "total_hp": 3.5,
+            "favorite": 3,
+            "buff": [
+                1,
+                2
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3905345904": {
+            "today_water": 0,
+            "total_water": 0,
+            "today_hp": 0,
+            "total_hp": 35.5,
+            "favorite": -22,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3408662870": {
+            "today_water": 0,
+            "total_water": 0,
+            "today_hp": 0,
+            "total_hp": 6.6,
+            "favorite": 71,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": true,
+            "special_call_type": "text",
+            "special_call_random": 30,
+            "special_call_content": "leaf\u59d0\u59d0~"
+        },
+        "2014618466": {
+            "today_water": 0,
+            "total_water": 0,
+            "today_hp": 0,
+            "total_hp": 1.9,
+            "favorite": 0,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3499880997": {
+            "today_water": 0,
+            "total_water": 0,
+            "today_hp": 0,
+            "total_hp": 6.8,
+            "favorite": -3,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "272293517": {
+            "today_water": 0,
+            "total_water": 0,
+            "today_hp": 0,
+            "total_hp": 34.5,
+            "favorite": -17,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3100569599": {
+            "today_water": 0,
+            "total_water": 0,
+            "today_hp": 0,
+            "total_hp": 13.2,
+            "favorite": 5,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3322388416": {
+            "today_water": 0,
+            "total_water": 0,
+            "today_hp": 0,
+            "total_hp": 0.0,
+            "favorite": 10,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3825715592": {
+            "today_water": 0,
+            "total_water": 0,
+            "today_hp": 0,
+            "total_hp": 1.2,
+            "favorite": 0,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3075929352": {
+            "today_water": 0,
+            "total_water": 0,
+            "today_hp": 0,
+            "total_hp": 3.6,
+            "favorite": -2,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3069301864": {
+            "today_water": 0,
+            "total_water": 0,
+            "today_hp": 0,
+            "total_hp": 13.1,
+            "favorite": -10,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        },
+        "3882803217": {
+            "today_water": 0,
+            "total_water": 0,
+            "today_hp": 0,
+            "total_hp": 0.9,
+            "favorite": 0,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": ""
+        }
+    }
+}

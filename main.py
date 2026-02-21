@@ -12,12 +12,53 @@ import math
 import re
 from operator import itemgetter
 
-@register("helloworld", "YourName", "一个简单的 Hello World 插件", "1.0.0")
+@register("可爱の水水の可爱のbot", "Waterwzy", "一个简单的 Hello World 插件", "1.2.0")
 class MyPlugin(Star):
     def __init__(self, context: Context):
         super().__init__(context)
         # 获取插件目录的路径
         self.plugin_dir = os.path.dirname(os.path.abspath(__file__))
+
+    def create_user_data(self) :
+        user = {
+            "today_water" : 0,
+            "total_water" : 0,
+            "today_hp" : 0,
+            "total_hp" : 0,
+            "favorite" : 0,
+            "buff" : [0,0],
+            "has_special_call" : False,
+            "special_call_type" : "",
+            "special_call_random" : 0,
+            "special_call_content" : "",
+        }
+        return user
+
+    def generate_buff_description(self,buff,waterlist) :
+        name , level = buff
+        des_str = "你今日获得的buff是："
+        des_str += waterlist['buff_text_list'][name]['name']
+        des_str += f'\n该buff的效果是:'
+        des_str += waterlist['buff_text_list'][name]['content'][level]
+        return des_str
+
+    def random_buff (self,waterlist) :
+        ran_int = random.randint( 1, 10 )
+        ran_object = random.randint( 1 , waterlist['buff_num'] )
+        if ran_int <= 6 :
+            return ( ran_object , 1)
+        elif ran_int <= 9 :
+            return ( ran_object , 2)
+        else :
+            return ( ran_object , 3)
+
+    def get_buff(self , user:int,waterlist:dict) :
+        user_s = str(user)
+        res = waterlist['user_data'].get(user_s , {} ).get("buff" , False)
+        if res == [0,0] :
+            res = False
+        return res
+
 
     def is_legal_songs(self,name:str) :
         target_path = "data/plugins/astrbot_plugin_test/AI"
@@ -37,21 +78,36 @@ class MyPlugin(Star):
         return target_str
 
 
-    def is_special_call(self,user_id:int,waterlist:list)  :
-        for special_user in waterlist['special_call_list'] :
-            if user_id == special_user['call_id'] :
-                return special_user
+    def is_special_call(self,user_id:int,waterlist)  :
+        user_s = str(user_id)
+        if waterlist['user_data'].get(user_s , {}).get("has_special_call" , None) :
+            return waterlist['user_data'][user_s]
         return None
 
-    def add_favorite(self,favorite_num:int,favorite_user:int,waterlist:list) -> None :
+    def add_favorite(self,favorite_num:int,favorite_user:int,waterlist) -> None :
         flag = 1
-        for user in waterlist['favorite_list'] :
-            if user['id'] == favorite_user :
-                user['favorite'] += favorite_num*waterlist['speacial_favorite_add']
-                flag = 0
-                break
-        if flag :
-            waterlist['favorite_list'].append({"id":favorite_user,"favorite":favorite_num})
+
+        more = 1.0
+        buff = self.get_buff(favorite_user , waterlist)
+        if buff :
+            name , level = buff
+            if name != 2 :
+                pass
+            elif level == 1 :
+                more = 1.5
+            elif level == 2 :
+                more = 2.0
+            elif level == 3 :
+                more = 3.0
+
+        favorite_num *= more
+        favorite_num = int(favorite_num)
+
+        user_s = str(favorite_user)
+        if not user_s in waterlist['user_data'] :
+            waterlist['user_data'][user_s] = self.create_user_data()
+        waterlist['user_data'][user_s]['favorite'] += favorite_num
+
         self.write_water(waterlist)
         return
 
@@ -74,70 +130,78 @@ class MyPlugin(Star):
         except ValueError :
             return False
 
-    def add_water(self, count : int, waterlist : list,user_id :int)  :
-        flag = 0
-        today = 0
-        total = 0
-        for user in waterlist['today_water_list'] :
-            if user['id'] == user_id :
-                flag = 1
-                if 3 - user['count'] < count :
-                    return None
-                user['count'] += count
-                today = user['count']
-                break
-        if flag == 0 :
-            waterlist['today_water_list'].append({"id":user_id,"count":count})
-            today = count
-        flag = 0
-        for user in waterlist['waterlist'] :
-            if user['id'] == user_id :
-                flag = 1
-                user['count'] += count
-                total = user['count']
-                break
-        if flag == 0:
-            waterlist['waterlist'].append({"id":user_id,"count":count})
-            total = count
+    def add_water(self, count : int, waterlist ,user_id :int)  :
+        user_s = str(user_id)
+        if not user_s in waterlist['user_data'] :
+            waterlist['user_data'][user_s] = self.create_user_data()
+        if waterlist['user_data'][user_s]['today_water'] == 3 :
+            return None
+        count = min(count , 3 - waterlist['user_data'][user_s]['today_water'])
+        waterlist['user_data'][user_s]['today_water'] += count
+        today = waterlist['user_data'][user_s]['today_water']
+        waterlist['user_data'][user_s]['total_water'] += count
+        total = waterlist['user_data'][user_s]['total_water']
         return (today , total)
 
     def get_favorite (self , id : int , waterlist) :
-        for user in waterlist['favorite_list'] :
-            if user['id'] == id :
-                return user['favorite']
+        user_s = str(id)
+        if user_s in waterlist['user_data'] :
+            return waterlist['user_data'][user_s]['favorite']
         return 0
+
+    def get_m_kill(self , waterlist) :
+        max = -math.inf
+        max_id = None
+        min = math.inf
+        min_id = None
+        for id,user in waterlist['user_data'].items() :
+            if user['today_hp'] != 0 and user['today_hp'] > max :
+                max = user['today_hp']
+                max_id = int(id)
+            if user['today_hp'] != 0 and user['today_hp'] < min :
+                min = user['today_hp']
+                min_id = int(id)
+        return (max , max_id , min , min_id)
+
+    def clear_user_data(self ,waterlist) :
+        for user in waterlist['user_data'].values() :
+            user['today_water'] = 0
+            user['today_hp'] = 0
+            user['buff'] = [0 , 0]
+        return waterlist
 
     async def check_date_update(self) :
         waterlist = self.create_waterlist()
         if waterlist['date_mon'] != time.localtime(time.time()).tm_mon or waterlist['date_day'] != time.localtime(time.time()).tm_mday :
             try:
+                import random
                 yesterday_water_hp = waterlist['water_boss']['today_hp']
-                waterlist['water_boss']['kill_list'] = sorted(waterlist['water_boss']['kill_list'] , key=itemgetter('hp'),reverse=True)
-                yesterday_max_id = waterlist['water_boss']['kill_list'][0]['id']
-                yesterday_max_hp = waterlist['water_boss']['kill_list'][0]['hp']
-                waterlist['today_water_list'] = []
+                yesterday_max_hp , yesterday_max_id , yesterday_min_hp , yesterday_min_id = self.get_m_kill(waterlist)
                 waterlist['date_mon'] = time.localtime(time.time()).tm_mon
                 waterlist['date_day'] = time.localtime(time.time()).tm_mday
                 waterlist['water_boss']['now_hp'] = waterlist['water_boss']['today_hp'] + waterlist['water_boss']['hp_add_of_yesterday']
                 waterlist['water_boss']['today_hp'] = waterlist['water_boss']['now_hp']
-                waterlist['water_boss']['kill_list'] = []
                 waterlist['water_boss']['hp_add_of_yesterday'] = -5
+                waterlist = self.clear_user_data(waterlist)
                 chain = [
                     Comp.Plain(f"=====昨日打水总计=====\n昨日血量:{yesterday_water_hp}\n昨日打水最多: "),
                     Comp.At(qq = yesterday_max_id),
-                    Comp.Plain(f"({yesterday_max_hp})\n今日更新血量:{waterlist['water_boss']['today_hp']}")
+                    Comp.Plain(f"({yesterday_max_hp})\u200b\n昨日打水最少:"),
+                    Comp.At(qq = yesterday_min_id),
+                    Comp.Plain(f"({yesterday_min_hp})\u200b\n今日更新血量:{waterlist['water_boss']['today_hp']}")
                 ]
                 random.seed(time.time())
                 await self.context.send_message(waterlist['message_session'],MessageChain(chain))
+                self.write_water(waterlist)
             except Exception as e:
                 logger.error(f"catch error in checking update:{e}")
-        self.write_water(waterlist)
-
+                logger.exception(e)
+        
     def create_waterlist(self):
 
         try:
             # 使用绝对路径
-            file_path = os.path.join(self.plugin_dir, 'datalist.json')
+            file_path = os.path.join(self.plugin_dir, 'newlist.json')
             
             logger.info(f"尝试读取文件: {file_path}")
             
@@ -148,17 +212,17 @@ class MyPlugin(Star):
         except FileNotFoundError as e:
             logger.error(f"文件未找到: {e}")
             # 可以在这里创建默认文件或返回空列表
-            return []
+            return {}
         except Exception as e:
             logger.error(f"读取水井数据出错: {e}")
-            return []
+            return {}
             
         return bot_data
     
     def write_water(self,waterlist) :
         
             # 使用绝对路径
-        file_path = os.path.join(self.plugin_dir, 'datalist.json')
+        file_path = os.path.join(self.plugin_dir, 'newlist.json')
                   
         with open(file_path, 'w', encoding='utf-8') as f:
             json.dump(waterlist,f,indent=4)
@@ -168,7 +232,7 @@ class MyPlugin(Star):
 
     async def initialize(self):
         """插件初始化时检查文件是否存在"""
-        file_path = os.path.join(self.plugin_dir, 'datalist.json')
+        file_path = os.path.join(self.plugin_dir, 'newlist.json')
         
         if not os.path.exists(file_path):
             logger.warning(f"bot文件不存在: {file_path}")
@@ -182,19 +246,29 @@ class MyPlugin(Star):
         logger.info(message_chain)
         yield event.plain_result(f"Hello, {user_name}, 你发了 {message_str}!")
 
-    @filter.event_message_type(filter.EventMessageType.GROUP_MESSAGE,priority = 20 )
+    @filter.on_waiting_llm_request()
+    async def stop_group(self, event: AstrMessageEvent):
+        if event.message_obj.group == None :
+            return
+        if event.message_obj.group.group_id == "1012575925" :
+            event.stop_event()
+
+    @filter.event_message_type(filter.EventMessageType.GROUP_MESSAGE )
     async def water_in_group(self, event: AstrMessageEvent):
-        
+        group_id = event.get_group_id()
+        if group_id == "1012575925" :
+            event.stop_event()
+        else :
+            return
+
         """打水功能"""
         await self.check_date_update()
         message_str = event.message_str.strip()
-        group_id = event.get_group_id()
+        
         sender = event.get_sender_name()
         waterlist = self.create_waterlist()
         sender_id = int(event.get_sender_id()) #int
-
-        if group_id != "1012575925" :
-            return
+        user_s = event.get_sender_id() #str
 
         waterlist['message_session'] = event.unified_msg_origin
 
@@ -221,22 +295,31 @@ class MyPlugin(Star):
                 yield event.chain_result(chain)
         elif message_str == '打水水' :
             if waterlist['water_boss']['now_hp'] != 0:
-                for user in waterlist['water_boss']['kill_list'] :
-                    if user['id'] == int(event.get_sender_id()) :
-                        yield event.plain_result("你今天已经打过水水了，不要再打了喵！")
-                        return
+                if user_s in waterlist['user_data'] and waterlist['user_data'][user_s]['today_hp'] != 0 :
+                    yield event.plain_result("你今天已经打过水水了，不要再打了喵！")
+                    return
                 kill_hp = math.ceil(random.random()*10)
-                kill_more = round(random.uniform( 1.1 , 10.0 ) + max( 0 , min( self.get_favorite(sender_id , waterlist)/100 , 10 ) ) , 1) if random.randint(0,9) else 1
+                kill_more = round(random.uniform( 1.1 , 10.0 ) + max( 0 , min( self.get_favorite(sender_id , waterlist)/100 , 10 ) ) , 1) if random.randint(0,19) else 1
+                
+                buff = self.get_buff(sender_id , waterlist)
+                if buff :
+                    name , level = buff
+                    if name != 1 :
+                        pass
+                    elif level == 1 :
+                        kill_more += 0.5
+                    elif level == 2 :
+                        kill_more += 1.3
+                    elif level == 3 :
+                        kill_more += 2.4
+
+                kill_more = min( kill_more , 15.0 )
+                
                 fin_kill_hp = round( kill_hp*kill_more , 1 )
 
-                flag = 0
-                for user_info in waterlist['water_boss']['total_list'] :
-                    if user_info['id'] == sender_id :
-                        user_info['hp'] = round(fin_kill_hp/10+user_info['hp'] , 1)
-                        flag = 1
-                        break
-                if flag == 0:
-                    waterlist['water_boss']['total_list'].append({"id":sender_id,"hp":round(fin_kill_hp/10 , 1)})
+                if not user_s in waterlist['user_data'] :
+                    waterlist['user_data'][user_s] = self.create_user_data()
+                waterlist['user_data'][user_s]['total_hp'] += round(fin_kill_hp/10 , 1)
 
                 if kill_hp*kill_more > waterlist['water_boss']['now_hp'] :
                     add_out_str = f'\n(伤害溢出，原始伤害{fin_kill_hp})'
@@ -245,10 +328,11 @@ class MyPlugin(Star):
                     add_out_str = ''
                 waterlist['water_boss']['now_hp'] = round (waterlist['water_boss']['now_hp'] - fin_kill_hp ,1)
                 if waterlist['water_boss']['now_hp'] == 0:
-                        waterlist['water_boss']['hp_add_of_yesterday'] = 10
+                    waterlist['water_boss']['hp_add_of_yesterday'] = 10
                 add_str = '' if kill_more == 1 else '（暴击）'
                 add_str_after = '' if waterlist['water_boss']['now_hp'] != 0 else '(今天的水水被打死了！)'
-                waterlist['water_boss']['kill_list'].append({"id":int(event.get_sender_id()),"hp":fin_kill_hp})
+
+                waterlist['user_data'][user_s]['today_hp'] = fin_kill_hp
 
                 self.add_favorite(int(-fin_kill_hp*0.1) , sender_id , waterlist)
 
@@ -257,33 +341,27 @@ class MyPlugin(Star):
                     Comp.Plain(f"\u200b\n 打水水成功，你今天给水水造成的伤害值是{fin_kill_hp}{add_str}（{waterlist['water_boss']['now_hp']}/{waterlist['water_boss']['today_hp']}）。{add_str_after}{add_out_str}")
                 ]
                 yield event.chain_result(chain)
-                #self.write_water(waterlist)
             else :
                 yield event.plain_result("今天的水水已经被打死了！明天再来吧。")
         elif message_str.startswith("灌水") :
-            flag = 0
-            for add_user in waterlist['water_boss']['total_list'] :
-                if sender_id == add_user['id'] :
-                    flag = 1
-                    user_info = add_user
-                    break
-            if flag == 0 :
+            if not user_s in waterlist['user_data'] :
                 yield event.plain_result(f"你还不能灌水，需要先去打水水！")
                 return
+            user_info = waterlist['user_data'][user_s]
             if message_str == "灌水" :
-                yield event.plain_result(f"你现在的灌水可用值：{user_info['hp']}（输入“灌水 具体数值”以增加水水血量，打水伤害与灌水可用值换算比为10:1）")
+                yield event.plain_result(f"你现在的灌水可用值：{user_info['total_hp']}（输入“灌水 具体数值”以增加水水血量，打水伤害与灌水可用值换算比为10:1）")
             elif (not self.is_float(message_str[ 3 : ]) ) or round(float( message_str[3 : ]) , 1) <= 0 :
                 yield event.plain_result(f"参数错误！（请输入正浮点数，灌水后需要有空格）")
             else :
                 add_hp = round(float( message_str[3 : ]) , 1)
-                if user_info['hp'] < add_hp or (waterlist['water_boss']['now_hp'] == 0 and user_info['hp'] -1 < add_hp):
-                    yield event.plain_result(f"你现在无法增加这么多的血量，你现在的血量可用值为{user_info['hp']}（复活水水需要额外1点血量）")
+                if user_info['total_hp'] < add_hp or (waterlist['water_boss']['now_hp'] == 0 and user_info['total_hp'] -1 < add_hp):
+                    yield event.plain_result(f"你现在无法增加这么多的血量，你现在的血量可用值为{user_info['total_hp']}（复活水水需要额外1点血量）")
                     return
                 extra_reborn = 0
                 if waterlist['water_boss']['now_hp'] == 0:
                     extra_reborn = 1
                 waterlist['water_boss']['now_hp'] = round(waterlist['water_boss']['now_hp']+add_hp , 1 )
-                user_info['hp'] = round(user_info['hp'] - add_hp -extra_reborn, 1 )
+                user_info['total_hp'] = round(user_info['total_hp'] - add_hp -extra_reborn, 1 )
 
                 self.add_favorite(int(add_hp*1.5) , sender_id , waterlist)
 
@@ -294,23 +372,21 @@ class MyPlugin(Star):
                 yield event.chain_result(chain)
         elif re.search("好感",message_str) is not None and self.is_at(event.message_obj.message,3516791958) :
             logger.info("触发好感度提示")
-            for user in waterlist['favorite_list'] :
-                if user['id'] == sender_id :
+            if user_s in waterlist['user_data'] :
                     
-                    chain = [
-                        Comp.At(qq = sender_id),
-                        Comp.Plain(f"\u200b 你的好感度是{user['favorite']}喵")
-                    ]
-                    if 0 < user['favorite'] <= 30 :
-                        chain.append(Comp.Image.fromFileSystem("data/plugins/astrbot_plugin_test/images/low-favorite.jpg"))
-                    elif user['favorite'] <= 0:
-                        chain.append(Comp.Plain(f"\u200b 杂鱼杂鱼~"))
-                        chain.append(Comp.Image.fromFileSystem("data/plugins/astrbot_plugin_test/images/low-low-favorite.jpg"))
-                    elif user['favorite'] >= 100 :
-                        chain.append(Comp.Image.fromFileSystem("data/plugins/astrbot_plugin_test/images/high-favorite.jpg"))
-                    yield event.chain_result(chain)
-
-                    return
+                chain = [
+                    Comp.At(qq = sender_id),
+                    Comp.Plain(f"\u200b 你的好感度是{waterlist['user_data'][user_s]['favorite']}喵")
+                ]
+                if 0 < waterlist['user_data'][user_s]['favorite'] <= 30 :
+                    chain.append(Comp.Image.fromFileSystem("data/plugins/astrbot_plugin_test/images/low-favorite.jpg"))
+                elif waterlist['user_data'][user_s]['favorite'] <= 0:
+                    chain.append(Comp.Plain(f"\u200b 杂鱼杂鱼~"))
+                    chain.append(Comp.Image.fromFileSystem("data/plugins/astrbot_plugin_test/images/low-low-favorite.jpg"))
+                elif waterlist['user_data'][user_s]['favorite'] >= 300 :
+                    chain.append(Comp.Image.fromFileSystem("data/plugins/astrbot_plugin_test/images/high-favorite.jpg"))
+                yield event.chain_result(chain)
+                return
             chain = [
                 Comp.Image.fromFileSystem("data/plugins/astrbot_plugin_test/images/low-favorite.jpg")
             ]
@@ -329,20 +405,42 @@ class MyPlugin(Star):
             ]
             yield event.chain_result(chain)
 
-        elif message_str == "checkwater" :
+        elif message_str == "今日水水" :
             chain = [
                 Comp.At(qq = sender_id),
                 Comp.Plain(f"\u200b  bot还活着喵！\n水水目前状态：{waterlist['water_boss']['now_hp']}/{waterlist['water_boss']['today_hp']}.预计明日血量为：{waterlist['water_boss']['today_hp']+waterlist['water_boss']['hp_add_of_yesterday']}.")
             ]
             yield event.chain_result(chain)
 
+        elif message_str == "buff" :#获取buff
+            logger.debug("进入buff区间")
+            if self.get_buff(sender_id , waterlist) :
+                return
+            logger.debug(f"确认用户{sender_id}今日无buff，正在获取buff")
+            buff = self.random_buff(waterlist)
+            if not user_s in waterlist['user_data'] :
+                waterlist['user_data'][user_s] = self.create_user_data()
+            waterlist['user_data'][user_s]['buff'] = buff
+            chain = [
+                Comp.At(qq = sender_id),
+                Comp.Plain(self.generate_buff_description(buff,waterlist))
+            ]
+            yield event.chain_result(chain)
+            #'''
+
+
+        #注意：这里的逻辑只能放在最后，新增功能都上去！！！
+
         elif self.is_special_call(sender_id,waterlist) is not None :
             logger.info(f"确认为特殊用户")
             target = self.is_special_call(sender_id,waterlist)
-            randoms = random.randint(1,target['call_random'])
-            if randoms == 1:
+            randoms = random.randint(1,target['special_call_random'])
+            if randoms == 1 :
                 self.add_favorite(1,sender_id,waterlist)
-                yield event.plain_result(f"{target['call_str']}")
+                if target['special_call_type'] == "text" :
+                    yield event.plain_result(f"{target['special_call_content']}")
+                elif target['special_call_type'] == "image" :
+                    yield event.image_result(target['special_call_content'])
             else :
                 logger.info(f"call_random not worked,now random int:{randoms}")
 
