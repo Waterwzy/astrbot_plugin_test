@@ -50,15 +50,11 @@ class MyPlugin(Star):
         for i in range(1, waterlist["buff_num"] + 1):
             for level in range(1, 4):
                 buff_list.append({"buff": (i, level), "chance": 0})
-                if user_currency >= 2 * waterlist["buff_text_list"][i]["count"][level]:
-                    buff_list[-1]["chance"] = 3
-                elif (
-                    user_currency
-                    >= 1.5 * waterlist["buff_text_list"][i]["count"][level]
-                ):
-                    buff_list[-1]["chance"] = 2
-                elif user_currency >= waterlist["buff_text_list"][i]["count"][level]:
-                    buff_list[-1]["chance"] = 1
+                if user_currency >= waterlist["buff_text_list"][i]["count"][level]:
+                    if waterlist["buff_text_list"][i]["count"][level] != 0:
+                        buff_list[-1]["chance"] = waterlist["buff_text_list"][i]["count"][level]
+                    else :
+                        buff_list[-1]["chance"] = 1
         chance_list = [item["chance"] for item in buff_list]
         buff_object = random.choices(buff_list, weights=chance_list, k=1)[0]["buff"]
 
@@ -371,8 +367,6 @@ class MyPlugin(Star):
                     elif level == 3:
                         kill_more += 2.4
 
-                kill_more = min(kill_more, 15.0)
-
                 fin_kill_hp = round(kill_hp * kill_more, 1)
 
                 if user_s not in waterlist["user_data"]:
@@ -549,7 +543,7 @@ class MyPlugin(Star):
         elif message_str == "水水启动":
             TMPL = """
                     <div style="font-size: 32px;">
-                    <h1 style="color: black">水水bot功能列表（v1.2.0）</h1>
+                    <h1 style="color: black">水水bot功能列表（v1.2.2）</h1>
 
                     <ul>
                     {% for item in items %}
@@ -569,7 +563,8 @@ class MyPlugin(Star):
                 "今日水水（检查bot运行状态以及水水状态）\n",
                 "buff（获取今日buff，可以带来打水水或者好感增加的收益，部分buff需要货币购买）\n",
                 "水水启动（你现在看的就是~）\n",
-                "买水水（将好感度转换为货币）\n？？（猜猜看是什么？）",
+                "买水水（将好感度转换为货币）\n",
+                "？？（猜猜看是什么？）"
             ]
             img = await self.html_render(
                 TMPL, {"items": func_text}
