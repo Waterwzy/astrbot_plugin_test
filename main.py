@@ -271,15 +271,6 @@ class MyPlugin(Star):
         if not os.path.exists(file_path):
             logger.warning(f"bot文件不存在: {file_path}")
 
-    @filter.command("helloworld")
-    async def helloworld(self, event: AstrMessageEvent):
-        """这是一个 hello world 指令"""
-        user_name = event.get_sender_name()
-        message_str = event.message_str
-        message_chain = event.get_messages()
-        logger.info(message_chain)
-        yield event.plain_result(f"Hello, {user_name}, 你发了 {message_str}!")
-
     """
     @filter.on_waiting_llm_request()
     async def stop_group(self, event: AstrMessageEvent):
@@ -342,16 +333,14 @@ class MyPlugin(Star):
                 ):
                     yield event.plain_result("你今天已经打过水水了，不要再打了喵！")
                     return
-                kill_hp = math.ceil(random.random() * 10)
+                kill_hp = math.ceil(random.randint(1,100) ** (1/2))
                 kill_more = (
                     round(
-                        random.uniform(1.1, 10.0)
-                        + max(
-                            0, min(self.get_favorite(sender_id, waterlist) / 100, 10)
-                        ),
+                        math.ceil(random.randint(1331,1000000) ** (1/3))/10 +
+                        + max(self.get_favorite(sender_id, waterlist) / 100 , 0),
                         1,
                     )
-                    if random.randint(0, 19)
+                    if random.randint(0, 99)
                     else 1
                 )
 
@@ -471,7 +460,7 @@ class MyPlugin(Star):
                             "data/plugins/astrbot_plugin_test/images/low-low-favorite.jpg"
                         )
                     )
-                elif waterlist["user_data"][user_s]["favorite"] >= 300:
+                elif waterlist["user_data"][user_s]["favorite"] >= 1314:
                     chain.append(
                         Comp.Image.fromFileSystem(
                             "data/plugins/astrbot_plugin_test/images/high-favorite.jpg"
@@ -540,7 +529,7 @@ class MyPlugin(Star):
             ]
             yield event.chain_result(chain)
             #'''
-        elif message_str == "水水启动":
+        elif message_str == "水表":
             TMPL = """
                     <div style="font-size: 32px;">
                     <h1 style="color: black">水水bot功能列表（v1.2.2）</h1>
@@ -562,7 +551,7 @@ class MyPlugin(Star):
                 "翻唱（获取特定歌曲翻唱音频）\n",
                 "今日水水（检查bot运行状态以及水水状态）\n",
                 "buff（获取今日buff，可以带来打水水或者好感增加的收益，部分buff需要货币购买）\n",
-                "水水启动（你现在看的就是~）\n",
+                "水表（你现在看的就是~）\n",
                 "买水水（将好感度转换为货币）\n",
                 "？？（猜猜看是什么？）"
             ]

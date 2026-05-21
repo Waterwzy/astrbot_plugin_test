@@ -1,6 +1,6 @@
 {
-    "date_mon": 3,
-    "date_day": 29,
+    "date_mon": 5,
+    "date_day": 21,
     "master_id": 2916963017,
     "message_session": "mybot:GroupMessage:1012575925",
     "special_favorite_add": 1,
@@ -39,33 +39,33 @@
         }
     ],
     "water_boss": {
-        "today_hp": 1030,
+        "today_hp": 1560,
         "hp_add_of_yesterday": 10,
         "now_hp": 0.0
     },
     "user_data": {
         "2916963017": {
             "today_water": 3,
-            "total_water": 476,
-            "today_hp": 143.1,
-            "total_hp": 66.5,
-            "favorite": 1961,
+            "total_water": 635,
+            "today_hp": 30.0,
+            "total_hp": 24.5,
+            "favorite": 2000,
             "buff": [
-                1,
+                2,
                 3
             ],
             "has_special_call": true,
-            "special_call_type": "image",
+            "special_call_type": "text",
             "special_call_random": 50,
-            "special_call_content": "data/plugins/astrbot_plugin_test/images/call/2916963017.jpg",
-            "currency": 1194
+            "special_call_content": "\u6c34\u6c34\u59d0\u59d0~",
+            "currency": 2442
         },
         "287524969": {
             "today_water": 0,
-            "total_water": 10,
-            "today_hp": 2.6,
-            "total_hp": 84.89999999999998,
-            "favorite": -24,
+            "total_water": 19,
+            "today_hp": 0,
+            "total_hp": 117.89999999999995,
+            "favorite": -21,
             "buff": [
                 0,
                 0
@@ -78,18 +78,18 @@
         },
         "3113287941": {
             "today_water": 3,
-            "total_water": 314,
-            "today_hp": 13.4,
-            "total_hp": 420.30000000000007,
-            "favorite": 736,
+            "total_water": 470,
+            "today_hp": 281.0,
+            "total_hp": 199.3,
+            "favorite": 1969,
             "buff": [
                 1,
                 1
             ],
-            "has_special_call": false,
-            "special_call_type": "",
-            "special_call_random": 0,
-            "special_call_content": "",
+            "has_special_call": true,
+            "special_call_type": "text",
+            "special_call_random": 30,
+            "special_call_content": "\u597d\u611f\u52a0\u4e00",
             "currency": 1
         },
         "1797728368": {
@@ -112,7 +112,7 @@
             "today_water": 0,
             "total_water": 4,
             "today_hp": 0,
-            "total_hp": 6.5,
+            "total_hp": 10.3,
             "favorite": 5,
             "buff": [
                 0,
@@ -126,13 +126,13 @@
         },
         "2454466986": {
             "today_water": 0,
-            "total_water": 134,
-            "today_hp": 17.5,
-            "total_hp": 167.10000000000002,
-            "favorite": 300,
+            "total_water": 140,
+            "today_hp": 0,
+            "total_hp": 188.70000000000005,
+            "favorite": 303,
             "buff": [
-                1,
-                1
+                0,
+                0
             ],
             "has_special_call": false,
             "special_call_type": "",
@@ -142,10 +142,10 @@
         },
         "434894423": {
             "today_water": 0,
-            "total_water": 253,
+            "total_water": 256,
             "today_hp": 0,
-            "total_hp": 6.4,
-            "favorite": 1428,
+            "total_hp": 54.099999999999994,
+            "favorite": 1438,
             "buff": [
                 0,
                 0
@@ -157,14 +157,14 @@
             "currency": 0
         },
         "2983368794": {
-            "today_water": 3,
-            "total_water": 310,
-            "today_hp": 162.0,
-            "total_hp": 408.8999999999999,
-            "favorite": 759,
+            "today_water": 0,
+            "total_water": 379,
+            "today_hp": 0,
+            "total_hp": 516.3,
+            "favorite": 869,
             "buff": [
-                1,
-                1
+                0,
+                0
             ],
             "has_special_call": true,
             "special_call_type": "text",
@@ -174,10 +174,10 @@
         },
         "2221388664": {
             "today_water": 0,
-            "total_water": 9,
+            "total_water": 27,
             "today_hp": 0,
-            "total_hp": 39.0,
-            "favorite": -13,
+            "total_hp": 79.60000000000002,
+            "favorite": 12,
             "buff": [
                 0,
                 0
@@ -191,25 +191,25 @@
         "502871236": {
             "today_water": 0,
             "total_water": 26,
-            "today_hp": 42.9,
-            "total_hp": 27.4,
-            "favorite": 1409,
+            "today_hp": 0,
+            "total_hp": 187.4,
+            "favorite": 1249,
             "buff": [
-                2,
-                1
+                0,
+                0
             ],
             "has_special_call": true,
             "special_call_type": "text",
             "special_call_random": 30,
             "special_call_content": "\u5c0f\u5fc3\u6d63\u718a\uff08\u9003\uff09",
-            "currency": 31
+            "currency": 1
         },
         "1707880078": {
             "today_water": 0,
-            "total_water": 19,
-            "today_hp": 47.7,
-            "total_hp": 51.699999999999996,
-            "favorite": 26,
+            "total_water": 24,
+            "today_hp": 0,
+            "total_hp": 98.30000000000001,
+            "favorite": 7,
             "buff": [
                 0,
                 0
@@ -222,10 +222,10 @@
         },
         "3800880199": {
             "today_water": 0,
-            "total_water": 15,
+            "total_water": 129,
             "today_hp": 0,
-            "total_hp": 21.5,
-            "favorite": 115,
+            "total_hp": 186.20000000000005,
+            "favorite": 317,
             "buff": [
                 0,
                 0
@@ -238,26 +238,26 @@
         },
         "3762207553": {
             "today_water": 3,
-            "total_water": 61,
-            "today_hp": 9.7,
-            "total_hp": 6.6,
-            "favorite": 7,
+            "total_water": 217,
+            "today_hp": 234.0,
+            "total_hp": 40.9,
+            "favorite": 1334,
             "buff": [
-                2,
-                1
+                1,
+                3
             ],
-            "has_special_call": false,
-            "special_call_type": "",
-            "special_call_random": 0,
-            "special_call_content": "",
-            "currency": 196
+            "has_special_call": true,
+            "special_call_type": "text",
+            "special_call_random": 30,
+            "special_call_content": "\u6253\u79cb\u98ce\u54af\uff01",
+            "currency": 153
         },
         "1597371743": {
             "today_water": 0,
-            "total_water": 188,
+            "total_water": 206,
             "today_hp": 0,
-            "total_hp": 139.09999999999997,
-            "favorite": 377,
+            "total_hp": 162.0,
+            "favorite": 418,
             "buff": [
                 0,
                 0
@@ -266,14 +266,14 @@
             "special_call_type": "text",
             "special_call_random": 30,
             "special_call_content": "\u7b28\u86cb\u521d\u516d~",
-            "currency": 0
+            "currency": 1
         },
         "3263714186": {
             "today_water": 0,
-            "total_water": 67,
+            "total_water": 73,
             "today_hp": 0,
-            "total_hp": 194.70000000000002,
-            "favorite": 382,
+            "total_hp": 269.7,
+            "favorite": 469,
             "buff": [
                 0,
                 0
@@ -286,10 +286,10 @@
         },
         "206398757": {
             "today_water": 0,
-            "total_water": 145,
+            "total_water": 151,
             "today_hp": 0,
-            "total_hp": 105.49999999999999,
-            "favorite": 269,
+            "total_hp": 124.9,
+            "favorite": 277,
             "buff": [
                 0,
                 0
@@ -302,10 +302,10 @@
         },
         "2745265597": {
             "today_water": 0,
-            "total_water": 93,
+            "total_water": 126,
             "today_hp": 0,
-            "total_hp": 92.5,
-            "favorite": 173,
+            "total_hp": 24.4,
+            "favorite": 404,
             "buff": [
                 0,
                 0
@@ -318,10 +318,10 @@
         },
         "3686533306": {
             "today_water": 0,
-            "total_water": 13,
+            "total_water": 24,
             "today_hp": 0,
-            "total_hp": 7.9,
-            "favorite": 84,
+            "total_hp": 20.2,
+            "favorite": 145,
             "buff": [
                 0,
                 0
@@ -334,10 +334,10 @@
         },
         "706137232": {
             "today_water": 0,
-            "total_water": 24,
+            "total_water": 26,
             "today_hp": 0,
-            "total_hp": 55.699999999999996,
-            "favorite": 132,
+            "total_hp": 66.5,
+            "favorite": 130,
             "buff": [
                 0,
                 0
@@ -382,10 +382,10 @@
         },
         "3385346898": {
             "today_water": 3,
-            "total_water": 263,
-            "today_hp": 9.5,
-            "total_hp": 401.20000000000016,
-            "favorite": 469,
+            "total_water": 419,
+            "today_hp": 0,
+            "total_hp": 616.9000000000001,
+            "favorite": 740,
             "buff": [
                 0,
                 0
@@ -415,9 +415,9 @@
         "1591803092": {
             "today_water": 0,
             "total_water": 2,
-            "today_hp": 25.0,
-            "total_hp": 165.80000000000004,
-            "favorite": -114,
+            "today_hp": 0,
+            "total_hp": 208.50000000000003,
+            "favorite": -149,
             "buff": [
                 0,
                 0
@@ -446,10 +446,10 @@
         },
         "2447192783": {
             "today_water": 0,
-            "total_water": 7,
+            "total_water": 33,
             "today_hp": 0,
-            "total_hp": 33.6,
-            "favorite": 2,
+            "total_hp": 75.6,
+            "favorite": 42,
             "buff": [
                 0,
                 0
@@ -478,10 +478,10 @@
         },
         "3224678516": {
             "today_water": 0,
-            "total_water": 53,
+            "total_water": 60,
             "today_hp": 0,
             "total_hp": 16.6,
-            "favorite": 199,
+            "favorite": 120,
             "buff": [
                 0,
                 0
@@ -490,14 +490,14 @@
             "special_call_type": "",
             "special_call_random": 0,
             "special_call_content": "",
-            "currency": 0
+            "currency": 65
         },
         "431966798": {
             "today_water": 0,
-            "total_water": 7,
+            "total_water": 12,
             "today_hp": 0,
             "total_hp": 0.0,
-            "favorite": 15,
+            "favorite": 30,
             "buff": [
                 0,
                 0
@@ -510,26 +510,26 @@
         },
         "3224095013": {
             "today_water": 3,
-            "total_water": 275,
-            "today_hp": 61.0,
-            "total_hp": 90.80000000000001,
-            "favorite": 2000,
+            "total_water": 428,
+            "today_hp": 140.8,
+            "total_hp": 68.9,
+            "favorite": 1941,
             "buff": [
-                1,
-                1
+                2,
+                3
             ],
             "has_special_call": true,
             "special_call_type": "image",
             "special_call_random": 30,
             "special_call_content": "data/plugins/astrbot_plugin_test/images/call/3224095013.gif",
-            "currency": 117
+            "currency": 1643
         },
         "1467893085": {
             "today_water": 3,
-            "total_water": 420,
-            "today_hp": 11.5,
-            "total_hp": 643.9999999999998,
-            "favorite": 466,
+            "total_water": 579,
+            "today_hp": 238.5,
+            "total_hp": 392.3999999999999,
+            "favorite": 1757,
             "buff": [
                 1,
                 2
@@ -538,17 +538,17 @@
             "special_call_type": "image",
             "special_call_random": 50,
             "special_call_content": "data/plugins/astrbot_plugin_test/images/call/1467893085.jpg",
-            "currency": 480
+            "currency": 1171
         },
         "2175364832": {
-            "today_water": 0,
-            "total_water": 139,
-            "today_hp": 0,
-            "total_hp": 273.09999999999997,
-            "favorite": 175,
+            "today_water": 3,
+            "total_water": 272,
+            "today_hp": 87.5,
+            "total_hp": 260.4,
+            "favorite": 747,
             "buff": [
-                0,
-                0
+                1,
+                1
             ],
             "has_special_call": false,
             "special_call_type": "",
@@ -560,8 +560,8 @@
             "today_water": 0,
             "total_water": 2,
             "today_hp": 0,
-            "total_hp": 3.7,
-            "favorite": 3,
+            "total_hp": 12.4,
+            "favorite": -4,
             "buff": [
                 0,
                 0
@@ -574,10 +574,10 @@
         },
         "2000945": {
             "today_water": 0,
-            "total_water": 74,
+            "total_water": 110,
             "today_hp": 0,
-            "total_hp": 52.7,
-            "favorite": 136,
+            "total_hp": 100.50000000000001,
+            "favorite": 207,
             "buff": [
                 0,
                 0
@@ -590,10 +590,10 @@
         },
         "2096321460": {
             "today_water": 0,
-            "total_water": 79,
+            "total_water": 88,
             "today_hp": 0,
-            "total_hp": 25.8,
-            "favorite": 319,
+            "total_hp": 29.6,
+            "favorite": 348,
             "buff": [
                 0,
                 0
@@ -606,10 +606,10 @@
         },
         "2165329855": {
             "today_water": 0,
-            "total_water": 145,
+            "total_water": 199,
             "today_hp": 0,
-            "total_hp": 114.00000000000001,
-            "favorite": 432,
+            "total_hp": 94.0,
+            "favorite": 722,
             "buff": [
                 0,
                 0
@@ -622,10 +622,10 @@
         },
         "1503293697": {
             "today_water": 0,
-            "total_water": 6,
+            "total_water": 9,
             "today_hp": 0,
-            "total_hp": 0,
-            "favorite": 0,
+            "total_hp": 2.9,
+            "favorite": 7,
             "buff": [
                 0,
                 0
@@ -654,10 +654,10 @@
         },
         "2052361": {
             "today_water": 0,
-            "total_water": 12,
+            "total_water": 21,
             "today_hp": 0,
-            "total_hp": 50.0,
-            "favorite": -7,
+            "total_hp": 54.800000000000004,
+            "favorite": 22,
             "buff": [
                 0,
                 0
@@ -670,26 +670,26 @@
         },
         "3693439025": {
             "today_water": 3,
-            "total_water": 164,
-            "today_hp": 73.0,
-            "total_hp": 169.60000000000002,
-            "favorite": 478,
+            "total_water": 320,
+            "today_hp": 161.1,
+            "total_hp": 480.6,
+            "favorite": 741,
             "buff": [
                 1,
                 1
             ],
-            "has_special_call": false,
-            "special_call_type": "",
-            "special_call_random": 0,
-            "special_call_content": "",
+            "has_special_call": true,
+            "special_call_type": "text",
+            "special_call_random": 30,
+            "special_call_content": "\u9003\u79bb\u732b\u5a18\u55b5\uff5e",
             "currency": 0
         },
         "1844833323": {
             "today_water": 0,
             "total_water": 3,
             "today_hp": 0,
-            "total_hp": 10.8,
-            "favorite": 4,
+            "total_hp": 16.700000000000003,
+            "favorite": -1,
             "buff": [
                 0,
                 0
@@ -718,10 +718,10 @@
         },
         "2411972143": {
             "today_water": 0,
-            "total_water": 56,
+            "total_water": 118,
             "today_hp": 0,
-            "total_hp": 6.5,
-            "favorite": 194.0,
+            "total_hp": 15.7,
+            "favorite": 386.0,
             "buff": [
                 0,
                 0
@@ -752,8 +752,8 @@
             "today_water": 0,
             "total_water": 3,
             "today_hp": 0,
-            "total_hp": 8.2,
-            "favorite": -4,
+            "total_hp": 34.8,
+            "favorite": -27,
             "buff": [
                 0,
                 0
@@ -766,10 +766,10 @@
         },
         "1658722951": {
             "today_water": 0,
-            "total_water": 47,
+            "total_water": 56,
             "today_hp": 0,
-            "total_hp": 37.2,
-            "favorite": 149,
+            "total_hp": 43.7,
+            "favorite": 170,
             "buff": [
                 0,
                 0
@@ -781,11 +781,11 @@
             "currency": 0
         },
         "2572402768": {
-            "today_water": 0,
-            "total_water": 6,
-            "today_hp": 0,
-            "total_hp": 15.399999999999999,
-            "favorite": 51,
+            "today_water": 1,
+            "total_water": 10,
+            "today_hp": 12.9,
+            "total_hp": 7.3,
+            "favorite": 103,
             "buff": [
                 0,
                 0
@@ -814,10 +814,10 @@
         },
         "3446278624": {
             "today_water": 0,
-            "total_water": 5,
+            "total_water": 6,
             "today_hp": 0,
-            "total_hp": 14.399999999999999,
-            "favorite": 2,
+            "total_hp": 17.0,
+            "favorite": 3,
             "buff": [
                 0,
                 0
@@ -830,10 +830,10 @@
         },
         "3680269120": {
             "today_water": 0,
-            "total_water": 4,
-            "today_hp": 8.4,
-            "total_hp": 352.4,
-            "favorite": -403,
+            "total_water": 7,
+            "today_hp": 72.1,
+            "total_hp": 554.4999999999999,
+            "favorite": -572,
             "buff": [
                 1,
                 1
@@ -879,9 +879,9 @@
         "2530059525": {
             "today_water": 0,
             "total_water": 18,
-            "today_hp": 27.3,
-            "total_hp": 76.9,
-            "favorite": 9,
+            "today_hp": 0,
+            "total_hp": 86.4,
+            "favorite": 0,
             "buff": [
                 0,
                 0
@@ -894,10 +894,10 @@
         },
         "3877340112": {
             "today_water": 0,
-            "total_water": 17,
+            "total_water": 23,
             "today_hp": 0,
-            "total_hp": 28.7,
-            "favorite": 33,
+            "total_hp": 38.9,
+            "favorite": 42,
             "buff": [
                 0,
                 0
@@ -910,10 +910,10 @@
         },
         "3368601311": {
             "today_water": 0,
-            "total_water": 202,
+            "total_water": 340,
             "today_hp": 0,
-            "total_hp": 136.0,
-            "favorite": 709,
+            "total_hp": 102.0,
+            "favorite": 1405,
             "buff": [
                 0,
                 0
@@ -926,10 +926,10 @@
         },
         "3985977401": {
             "today_water": 0,
-            "total_water": 3,
+            "total_water": 24,
             "today_hp": 0,
-            "total_hp": 50.4,
-            "favorite": -20,
+            "total_hp": 91.8,
+            "favorite": 7,
             "buff": [
                 0,
                 0
@@ -941,14 +941,14 @@
             "currency": 0
         },
         "3584246539": {
-            "today_water": 3,
-            "total_water": 59,
-            "today_hp": 34.8,
-            "total_hp": 83.0,
-            "favorite": 110,
+            "today_water": 0,
+            "total_water": 62,
+            "today_hp": 43.0,
+            "total_hp": 126.0,
+            "favorite": 83,
             "buff": [
-                1,
-                1
+                0,
+                0
             ],
             "has_special_call": false,
             "special_call_type": "",
@@ -960,8 +960,8 @@
             "today_water": 0,
             "total_water": 1,
             "today_hp": 0,
-            "total_hp": 0,
-            "favorite": 3,
+            "total_hp": 3.8,
+            "favorite": 0,
             "buff": [
                 0,
                 0
@@ -974,10 +974,10 @@
         },
         "3892917568": {
             "today_water": 0,
-            "total_water": 7,
+            "total_water": 21,
             "today_hp": 0,
-            "total_hp": 2.5,
-            "favorite": 15,
+            "total_hp": 8.1,
+            "favorite": 52,
             "buff": [
                 0,
                 0
@@ -990,10 +990,10 @@
         },
         "3812682893": {
             "today_water": 0,
-            "total_water": 12,
+            "total_water": 123,
             "today_hp": 0,
-            "total_hp": 72.50000000000001,
-            "favorite": -24,
+            "total_hp": 222.60000000000008,
+            "favorite": 188,
             "buff": [
                 0,
                 0
@@ -1006,10 +1006,10 @@
         },
         "1023808307": {
             "today_water": 3,
-            "total_water": 195,
-            "today_hp": 120.6,
-            "total_hp": 251.49999999999994,
-            "favorite": 679,
+            "total_water": 351,
+            "today_hp": 1.0,
+            "total_hp": 59.6,
+            "favorite": 1677,
             "buff": [
                 1,
                 1
@@ -1054,9 +1054,9 @@
         },
         "3820534944": {
             "today_water": 0,
-            "total_water": 1,
+            "total_water": 3,
             "today_hp": 0,
-            "total_hp": 9.4,
+            "total_hp": 19.400000000000002,
             "favorite": -4,
             "buff": [
                 0,
@@ -1069,27 +1069,27 @@
             "currency": 0
         },
         "3877792948": {
-            "today_water": 3,
-            "total_water": 10,
-            "today_hp": 10.8,
-            "total_hp": 59.2,
-            "favorite": -10,
+            "today_water": 0,
+            "total_water": 21,
+            "today_hp": 0,
+            "total_hp": 12.7,
+            "favorite": 154,
             "buff": [
                 0,
                 0
             ],
-            "has_special_call": false,
-            "special_call_type": "",
-            "special_call_random": 0,
-            "special_call_content": "",
-            "currency": 0
+            "has_special_call": true,
+            "special_call_type": "image",
+            "special_call_random": 30,
+            "special_call_content": "data/plugins/astrbot_plugin_test/images/call/3877792948.jpg",
+            "currency": 2
         },
         "2642797027": {
             "today_water": 0,
-            "total_water": 14,
+            "total_water": 17,
             "today_hp": 0,
-            "total_hp": 34.199999999999996,
-            "favorite": 7,
+            "total_hp": 42.7,
+            "favorite": 42,
             "buff": [
                 0,
                 0
@@ -1102,29 +1102,29 @@
         },
         "1932325692": {
             "today_water": 3,
-            "total_water": 88,
-            "today_hp": 82.2,
-            "total_hp": 110.39999999999999,
-            "favorite": 378,
+            "total_water": 202,
+            "today_hp": 86.8,
+            "total_hp": 355.2999999999999,
+            "favorite": 497,
             "buff": [
                 1,
                 1
             ],
-            "has_special_call": false,
-            "special_call_type": "",
-            "special_call_random": 0,
-            "special_call_content": "",
+            "has_special_call": true,
+            "special_call_type": "image",
+            "special_call_random": 30,
+            "special_call_content": "data/plugins/astrbot_plugin_test/images/call/1932325692.gif",
             "currency": 0
         },
         "3337411391": {
             "today_water": 0,
-            "total_water": 9,
-            "today_hp": 17.0,
-            "total_hp": 23.3,
-            "favorite": 4,
+            "total_water": 32,
+            "today_hp": 0,
+            "total_hp": 93.60000000000001,
+            "favorite": 12,
             "buff": [
-                1,
-                1
+                0,
+                0
             ],
             "has_special_call": false,
             "special_call_type": "",
@@ -1136,8 +1136,8 @@
             "today_water": 0,
             "total_water": 0,
             "today_hp": 0,
-            "total_hp": 64.3,
-            "favorite": -43,
+            "total_hp": 109.5,
+            "favorite": -70,
             "buff": [
                 0,
                 0
@@ -1152,8 +1152,8 @@
             "today_water": 0,
             "total_water": 3,
             "today_hp": 0,
-            "total_hp": 6.9,
-            "favorite": 97,
+            "total_hp": 8.0,
+            "favorite": 123,
             "buff": [
                 0,
                 0
@@ -1198,10 +1198,10 @@
         },
         "272293517": {
             "today_water": 0,
-            "total_water": 3,
+            "total_water": 21,
             "today_hp": 0,
-            "total_hp": 47.099999999999994,
-            "favorite": -18,
+            "total_hp": 66.1,
+            "favorite": 22,
             "buff": [
                 0,
                 0
@@ -1216,8 +1216,8 @@
             "today_water": 0,
             "total_water": 0,
             "today_hp": 0,
-            "total_hp": 21.799999999999997,
-            "favorite": -1,
+            "total_hp": 39.99999999999999,
+            "favorite": -15,
             "buff": [
                 0,
                 0
@@ -1278,10 +1278,10 @@
         },
         "3069301864": {
             "today_water": 0,
-            "total_water": 0,
+            "total_water": 6,
             "today_hp": 0,
-            "total_hp": 20.299999999999997,
-            "favorite": -14,
+            "total_hp": 46.099999999999994,
+            "favorite": -17,
             "buff": [
                 0,
                 0
@@ -1296,8 +1296,8 @@
             "today_water": 0,
             "total_water": 0,
             "today_hp": 0,
-            "total_hp": 0.9,
-            "favorite": 0,
+            "total_hp": 2.9,
+            "favorite": -2,
             "buff": [
                 0,
                 0
@@ -1326,10 +1326,10 @@
         },
         "3927375829": {
             "today_water": 0,
-            "total_water": 36,
+            "total_water": 57,
             "today_hp": 0,
-            "total_hp": 27.9,
-            "favorite": 94,
+            "total_hp": 55.79999999999999,
+            "favorite": 133,
             "buff": [
                 0,
                 0
@@ -1358,13 +1358,13 @@
         },
         "3434447249": {
             "today_water": 3,
-            "total_water": 40,
-            "today_hp": 0,
-            "total_hp": 48.2,
-            "favorite": 91,
+            "total_water": 187,
+            "today_hp": 13.5,
+            "total_hp": 103.2,
+            "favorite": 599,
             "buff": [
-                0,
-                0
+                1,
+                1
             ],
             "has_special_call": false,
             "special_call_type": "",
@@ -1374,10 +1374,10 @@
         },
         "2108796601": {
             "today_water": 3,
-            "total_water": 27,
-            "today_hp": 110.0,
-            "total_hp": 45.1,
-            "favorite": 44,
+            "total_water": 186,
+            "today_hp": 84.7,
+            "total_hp": 287.80000000000007,
+            "favorite": 308,
             "buff": [
                 1,
                 1
@@ -1390,10 +1390,10 @@
         },
         "3670930081": {
             "today_water": 0,
-            "total_water": 0,
+            "total_water": 96,
             "today_hp": 0,
-            "total_hp": 2.8,
-            "favorite": -2,
+            "total_hp": 116.30000000000003,
+            "favorite": 187,
             "buff": [
                 0,
                 0
@@ -1405,11 +1405,11 @@
             "currency": 0
         },
         "3043194396": {
-            "today_water": 2,
-            "total_water": 16,
+            "today_water": 3,
+            "total_water": 161,
             "today_hp": 0,
-            "total_hp": 0,
-            "favorite": 48,
+            "total_hp": 14.5,
+            "favorite": 521,
             "buff": [
                 0,
                 0
@@ -1438,10 +1438,10 @@
         },
         "1271238801": {
             "today_water": 0,
-            "total_water": 3,
+            "total_water": 21,
             "today_hp": 0,
-            "total_hp": 0.9,
-            "favorite": 9,
+            "total_hp": 21.8,
+            "favorite": 46,
             "buff": [
                 0,
                 0
@@ -1454,10 +1454,266 @@
         },
         "3662314258": {
             "today_water": 0,
+            "total_water": 1,
+            "today_hp": 0,
+            "total_hp": 6.699999999999999,
+            "favorite": -2,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": "",
+            "currency": 0
+        },
+        "634214545": {
+            "today_water": 3,
+            "total_water": 78,
+            "today_hp": 117.0,
+            "total_hp": 99.5,
+            "favorite": 145,
+            "buff": [
+                1,
+                1
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": "",
+            "currency": 0
+        },
+        "1373547386": {
+            "today_water": 0,
             "total_water": 0,
             "today_hp": 0,
-            "total_hp": 0.6,
+            "total_hp": 5.3,
+            "favorite": -5,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": "",
+            "currency": 0
+        },
+        "761865476": {
+            "today_water": 0,
+            "total_water": 6,
+            "today_hp": 0,
+            "total_hp": 17.2,
+            "favorite": 1,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": "",
+            "currency": 0
+        },
+        "919825445": {
+            "today_water": 0,
+            "total_water": 6,
+            "today_hp": 0,
+            "total_hp": 9.1,
+            "favorite": 10,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": "",
+            "currency": 0
+        },
+        "1786610356": {
+            "today_water": 0,
+            "total_water": 0,
+            "today_hp": 0,
+            "total_hp": 2.8,
+            "favorite": -2,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": "",
+            "currency": 0
+        },
+        "3073830863": {
+            "today_water": 0,
+            "total_water": 0,
+            "today_hp": 0,
+            "total_hp": 0.2,
             "favorite": 0,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": "",
+            "currency": 0
+        },
+        "2579989548": {
+            "today_water": 0,
+            "total_water": 0,
+            "today_hp": 0,
+            "total_hp": 0.8,
+            "favorite": 0,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": "",
+            "currency": 0
+        },
+        "2564484407": {
+            "today_water": 0,
+            "total_water": 0,
+            "today_hp": 0,
+            "total_hp": 19.3,
+            "favorite": -14,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": "",
+            "currency": 0
+        },
+        "2207962704": {
+            "today_water": 0,
+            "total_water": 84,
+            "today_hp": 0,
+            "total_hp": 136.1,
+            "favorite": 136,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": "",
+            "currency": 0
+        },
+        "2326560537": {
+            "today_water": 0,
+            "total_water": 9,
+            "today_hp": 0,
+            "total_hp": 5.8,
+            "favorite": 22,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": "",
+            "currency": 0
+        },
+        "3496395341": {
+            "today_water": 0,
+            "total_water": 15,
+            "today_hp": 0,
+            "total_hp": 88.5,
+            "favorite": -16,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": "",
+            "currency": 0
+        },
+        "3911092764": {
+            "today_water": 0,
+            "total_water": 69,
+            "today_hp": 0,
+            "total_hp": 79.89999999999998,
+            "favorite": 138,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": "",
+            "currency": 0
+        },
+        "1853617192": {
+            "today_water": 0,
+            "total_water": 0,
+            "today_hp": 0,
+            "total_hp": 2.8,
+            "favorite": -1,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": "",
+            "currency": 0
+        },
+        "1994067649": {
+            "today_water": 0,
+            "total_water": 61,
+            "today_hp": 0,
+            "total_hp": 29.900000000000002,
+            "favorite": 164,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": "",
+            "currency": 0
+        },
+        "1158026885": {
+            "today_water": 0,
+            "total_water": 2,
+            "today_hp": 0,
+            "total_hp": 3.7,
+            "favorite": 3,
+            "buff": [
+                0,
+                0
+            ],
+            "has_special_call": false,
+            "special_call_type": "",
+            "special_call_random": 0,
+            "special_call_content": "",
+            "currency": 0
+        },
+        "3823758298": {
+            "today_water": 0,
+            "total_water": 3,
+            "today_hp": 0,
+            "total_hp": 0,
+            "favorite": 18,
             "buff": [
                 0,
                 0
