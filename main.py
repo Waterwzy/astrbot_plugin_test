@@ -27,6 +27,7 @@ class MyPlugin(Star):
             "today_water": 0,
             "total_water": 0,
             "today_hp": 0,
+            "today_real_hp": 0,
             "total_hp": 0,
             "favorite": 0,
             "buff": [0, 0],
@@ -41,10 +42,11 @@ class MyPlugin(Star):
             waterlist['user_data'][user] = std_user
             return True
         flag = False
-        for key, k_value in std_user.items():
-            if not key in waterlist['user_data'][user]:
-                waterlist['user_data'][user][key] = k_value
-                flag = True
+        for users in waterlist["user_data"]:
+            for key, k_value in std_user.items():
+                if not key in waterlist['user_data'][users]:
+                    waterlist['user_data'][users][key] = k_value
+                    flag = True
         return flag
 
     def generate_buff_description(self, buff, waterlist):
@@ -179,11 +181,11 @@ class MyPlugin(Star):
         min = math.inf
         min_id = None
         for id, user in waterlist["user_data"].items():
-            if user["today_hp"] != 0 and user["today_hp"] > max:
-                max = user["today_hp"]
+            if user["today_real_hp"] != 0 and user["today_real_hp"] > max:
+                max = user["today_real_hp"]
                 max_id = int(id)
-            if user["today_hp"] != 0 and user["today_hp"] < min:
-                min = user["today_hp"]
+            if user["today_real_hp"] != 0 and user["today_real_hp"] < min:
+                min = user["today_real_hp"]
                 min_id = int(id)
         return (max, max_id, min, min_id)
 
@@ -193,10 +195,10 @@ class MyPlugin(Star):
             user["today_hp"] = 0
             user["buff"] = [0, 0]
             user['count'] = 1
+            user["today_real_hp"] = 0
         return waterlist
 
-    async def check_date_update(self):
-        waterlist = self.create_waterlist()
+    async def check_date_update(self, waterlist):
         if (
             waterlist["date_mon"] != time.localtime(time.time()).tm_mon
             or waterlist["date_day"] != time.localtime(time.time()).tm_mday
@@ -213,6 +215,7 @@ class MyPlugin(Star):
                 ) = self.get_m_kill(waterlist)
                 waterlist["date_mon"] = time.localtime(time.time()).tm_mon
                 waterlist["date_day"] = time.localtime(time.time()).tm_mday
+                logger.debug(f"更新日期为{waterlist['date_mon']}.{waterlist['date_day']}")
                 waterlist["water_boss"]["now_hp"] = (
                     waterlist["water_boss"]["today_hp"]
                     + waterlist["water_boss"]["hp_add_of_yesterday"]
@@ -236,6 +239,7 @@ class MyPlugin(Star):
                     waterlist["message_session"], MessageChain(chain)
                 )
                 self.write_water(waterlist)
+                logger.debug("日期更新已写入")
             except Exception as e:
                 logger.error(f"catch error in checking update:{e}")
                 logger.exception(e)
@@ -296,7 +300,7 @@ class MyPlugin(Star):
 
         """打水功能"""
         async with self._water_lock:
-            await self.check_date_update()
+            
             message_str = event.message_str.strip()
 
             event.get_sender_name()
@@ -306,6 +310,8 @@ class MyPlugin(Star):
 
             if self.update_user_data(user_s, waterlist):
                 self.write_water(waterlist)
+
+            await self.check_date_update(waterlist)
 
             waterlist["message_session"] = event.unified_msg_origin
 
@@ -376,6 +382,7 @@ class MyPlugin(Star):
                     fin_kill_hp = round(kill_hp * kill_more, 1)
 
                     waterlist["user_data"][user_s]["total_hp"] += round(fin_kill_hp / 10, 1)
+                    waterlist["user_data"][user_s]["today_real_hp"] += fin_kill_hp
 
                     if kill_hp * kill_more > waterlist["water_boss"]["now_hp"]:
                         add_out_str = f"\n(伤害溢出，原始伤害{fin_kill_hp})"
@@ -418,7 +425,7 @@ class MyPlugin(Star):
                     )
                 elif (not self.is_float(message_str[3:])) or round(
                     float(message_str[3:]), 1
-                ) <= 0:
+                ) <= 0 or not message_str.startswith("灌水 "):
                     yield event.plain_result(
                         "参数错误！（请输入正浮点数，灌水后需要有空格）"
                     )
